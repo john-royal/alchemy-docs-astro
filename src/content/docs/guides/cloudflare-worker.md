@@ -1,7 +1,8 @@
 ---
-order: 1
 title: Worker
 description: Deploy serverless functions at the edge with Cloudflare Workers. Learn how to build fast, scalable applications with Alchemy's Cloudflare Worker resources.
+sidebar:
+  order: 1
 ---
 
 # Cloudflare Workers

@@ -1,7 +1,8 @@
 ---
-order: 6
 title: Queue
 description: Learn how to create, configure, and use Cloudflare Queues for background job processing in your Worker applications managed by Alchemy.
+sidebar:
+  order: 6
 ---
 
 # Queue

@@ -1,7 +1,8 @@
 ---
-order: 2
 title: TanstackStart
 description: Guide to deploying TanStack Start applications to Cloudflare Workers using Alchemy. Learn configuration for Cloudflare and local development setup.
+sidebar:
+  order: 2
 ---
 
 # TanStack Start

@@ -1,7 +1,8 @@
 ---
-order: 1.4
 title: Astro
 description: Step-by-step guide to deploying Astro applications with server-side rendering to Cloudflare Workers using Alchemy's Infrastructure-as-Code approach.
+sidebar:
+  order: 1.4
 ---
 
 # Astro

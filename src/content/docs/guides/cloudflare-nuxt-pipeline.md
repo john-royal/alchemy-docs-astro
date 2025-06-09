@@ -1,7 +1,8 @@
 ---
-order: 4
 title: Nuxt
 description: Guide to deploying full-stack Nuxt 3 applications with data pipelines to Cloudflare. Learn how to set up R2, configure Nuxt, and use Cloudflare Pipeline.
+sidebar:
+  order: 4
 ---
 
 # Nuxt

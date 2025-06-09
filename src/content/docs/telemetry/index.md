@@ -1,6 +1,8 @@
 ---
 title: Telemetry
-order: 1
+description: Information about Alchemy's anonymous usage telemetry collection and how to opt out
+sidebar:
+  order: 1
 ---
 
 # Telemetry

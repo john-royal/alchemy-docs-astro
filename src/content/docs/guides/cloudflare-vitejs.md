@@ -1,7 +1,8 @@
 ---
-order: 1.5
 title: Vite.js
 description: Step-by-step guide to deploying Vite.js React applications with API endpoints to Cloudflare Workers using Alchemy's Infrastructure-as-Code approach.
+sidebar:
+  order: 1.5
 ---
 
 # Vite

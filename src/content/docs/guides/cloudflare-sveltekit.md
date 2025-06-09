@@ -1,7 +1,8 @@
 ---
-order: 3
 title: SvelteKit
 description: Step-by-step guide to deploying a SvelteKit application to Cloudflare Workers using Alchemy with KV storage and R2 buckets.
+sidebar:
+  order: 3
 ---
 
 # SvelteKit

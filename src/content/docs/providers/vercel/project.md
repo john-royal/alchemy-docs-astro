@@ -1,3 +1,8 @@
+---
+title: Managing Vercel Projects with Alchemy
+description: Learn how to create and manage Vercel projects using Alchemy for deploying web applications with Git integration and environment variables.
+---
+
 # Project
 
 Create and manage Vercel projects.

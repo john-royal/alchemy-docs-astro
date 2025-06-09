@@ -1,7 +1,8 @@
 ---
-order: 20
 title: PlanetScale
 description: Get started with PlanetScale serverless MySQL databases using Alchemy's Infrastructure-as-Code approach for database and branch management.
+sidebar:
+  order: 20
 ---
 
 # Getting Started with PlanetScale

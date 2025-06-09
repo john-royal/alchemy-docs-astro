@@ -6,12 +6,22 @@ import starlight from "@astrojs/starlight";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "My Docs",
+      title: "Alchemy",
       social: [
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/withastro/starlight",
+          href: "https://github.com/sam-goodwin/alchemy",
+        },
+        {
+          icon: "twitter",
+          label: "X",
+          href: "https://twitter.com/samgoodwin89",
+        },
+        {
+          icon: "discord",
+          label: "Discord",
+          href: "https://discord.gg/jwKw8dBJdN",
         },
       ],
       sidebar: [
@@ -26,6 +36,14 @@ export default defineConfig({
         {
           label: "Guides",
           autogenerate: { directory: "guides" },
+        },
+        {
+          label: "Concepts",
+          autogenerate: { directory: "concepts" },
+        },
+        {
+          label: "Providers",
+          autogenerate: { directory: "providers" },
         },
       ],
     }),

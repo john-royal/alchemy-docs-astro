@@ -1,7 +1,8 @@
 ---
-order: 6
 title: Custom Resource
 description: Learn how to build your own custom infrastructure resources for Alchemy using AI-assistance. Extend Alchemy to support any cloud service or API.
+sidebar:
+  order: 6
 ---
 
 # Custom Resources
