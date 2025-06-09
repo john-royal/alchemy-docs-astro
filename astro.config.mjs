@@ -1,9 +1,11 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightLlmsTxt from "starlight-llms-txt";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://alchemy.run",
   redirects: {
     "/guides/[page].html": "/guides/[page]",
     "/providers/[provider]/[page].html": "/providers/[provider]/[page]",
@@ -52,6 +54,7 @@ export default defineConfig({
           autogenerate: { directory: "providers", collapsed: true },
         },
       ],
+      plugins: [starlightLlmsTxt()],
     }),
   ],
   trailingSlash: "never",
