@@ -5,8 +5,6 @@ sidebar:
   order: 3
 ---
 
-# SvelteKit
-
 This guide walks through how to deploy a SvelteKit application to Cloudflare Workers with Alchemy.
 
 ## Create a new SvelteKit Project
@@ -77,15 +75,15 @@ yarn add -D @cloudflare/workers-types
 Update your `svelte.config.js` to use the Cloudflare adapter:
 
 ```js
-import adapter from '@sveltejs/adapter-cloudflare';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from "@sveltejs/adapter-cloudflare";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: vitePreprocess(),
-	kit: {
-		adapter: adapter()
-	}
+  preprocess: vitePreprocess(),
+  kit: {
+    adapter: adapter(),
+  },
 };
 
 export default config;
@@ -94,23 +92,23 @@ export default config;
 Create or update your `vite.config.ts` to configure the `cloudflare:workers` module:
 
 ```ts
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
-import { cloudflareWorkersDevEnvironmentShim, external } from 'alchemy/cloudflare';
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
+import {
+  cloudflareWorkersDevEnvironmentShim,
+  external,
+} from "alchemy/cloudflare";
 
 export default defineConfig({
-	plugins: [
-		sveltekit(),
-		cloudflareWorkersDevEnvironmentShim()
-	],
-	define: {
-		global: 'globalThis',
-	},
-	build: {
-		rollupOptions: {
-			external
-		}
-	}
+  plugins: [sveltekit(), cloudflareWorkersDevEnvironmentShim()],
+  define: {
+    global: "globalThis",
+  },
+  build: {
+    rollupOptions: {
+      external,
+    },
+  },
 });
 ```
 
@@ -173,12 +171,12 @@ declare module "cloudflare:workers" {
 Then update `src/app.d.ts` to use these types:
 
 ```ts
-import type { CloudflarePlatform } from './env';
+import type { CloudflarePlatform } from "./env";
 
 declare global {
-	namespace App {
-		interface Platform extends CloudflarePlatform {}
-	}
+  namespace App {
+    interface Platform extends CloudflarePlatform {}
+  }
 }
 
 export {};
@@ -188,16 +186,16 @@ Alternatively, you can define types directly in `src/app.d.ts`:
 
 ```ts
 declare global {
-	namespace App {
-		interface Platform {
-			env: {
-				STORAGE: R2Bucket;
-				AUTH_STORE: KVNamespace;
-			};
-			context: ExecutionContext;
-			caches: CacheStorage & { default: Cache };
-		}
-	}
+  namespace App {
+    interface Platform {
+      env: {
+        STORAGE: R2Bucket;
+        AUTH_STORE: KVNamespace;
+      };
+      context: ExecutionContext;
+      caches: CacheStorage & { default: Cache };
+    }
+  }
 }
 
 export {};
@@ -211,24 +209,26 @@ export {};
 Both type configurations support two ways to access Cloudflare resources:
 
 **Option 1: Direct runtime import (recommended)**
+
 ```ts
 // +page.server.ts
 import { env } from "cloudflare:workers";
 
 export const load = async () => {
-	const kvData = await env.AUTH_STORE?.get('some-key');
-	const r2Object = await env.STORAGE?.get('some-file');
-	return { kvData };
+  const kvData = await env.AUTH_STORE?.get("some-key");
+  const r2Object = await env.STORAGE?.get("some-file");
+  return { kvData };
 };
 ```
 
 **Option 2: Via platform parameter**
+
 ```ts
 // +page.server.ts
 export const load = async ({ platform }) => {
-	const kvData = await platform?.env?.AUTH_STORE?.get('some-key');
-	const r2Object = await platform?.env?.STORAGE?.get('some-file');
-	return { kvData };
+  const kvData = await platform?.env?.AUTH_STORE?.get("some-key");
+  const r2Object = await platform?.env?.STORAGE?.get("some-file");
+  return { kvData };
 };
 ```
 
@@ -323,4 +323,4 @@ For illustrative purposes, let's destroy the Alchemy stack:
 bun ./alchemy.run --destroy
 ```
 
-You're done! Happy SvelteKit'ing 🚀 
+You're done! Happy SvelteKit'ing 🚀

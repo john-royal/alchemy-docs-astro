@@ -1,9 +1,8 @@
 ---
-title: Managing Stripe Files with Alchemy
+title: File
 description: Learn how to create and manage Stripe Files for uploads using Alchemy.
 ---
 
-# File
 
 The File resource lets you create and manage [Stripe Files](https://stripe.com/docs/api/files) for uploading documents and images to Stripe.
 

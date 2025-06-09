@@ -1,11 +1,9 @@
 ---
-title: PlanetScale
+title: Getting Started with PlanetScale
 description: Get started with PlanetScale serverless MySQL databases using Alchemy's Infrastructure-as-Code approach for database and branch management.
 sidebar:
   order: 20
 ---
-
-# Getting Started with PlanetScale
 
 This guide will walk you through setting up a PlanetScale serverless MySQL database with branching workflow using Alchemy.
 
@@ -95,12 +93,12 @@ const database = await Database("my-app-db", {
   name: "my-app-db",
   organizationId: process.env.PLANETSCALE_ORG_ID!,
   region: {
-    slug: "us-east"
+    slug: "us-east",
   },
   clusterSize: "PS_10",
   allowDataBranching: true,
   automaticMigrations: true,
-  requireApprovalForDeploy: false
+  requireApprovalForDeploy: false,
 });
 
 console.log(`✅ Database created: ${database.name}`);
@@ -113,7 +111,7 @@ const devBranch = await Branch("development", {
   databaseName: database.name,
   parentBranch: "main",
   isProduction: false,
-  safeMigrations: true
+  safeMigrations: true,
 });
 
 console.log(`🌿 Development branch created: ${devBranch.name}`);
@@ -126,7 +124,7 @@ const stagingBranch = await Branch("staging", {
   databaseName: database.name,
   parentBranch: "main",
   isProduction: true,
-  clusterSize: "PS_10"
+  clusterSize: "PS_10",
 });
 
 console.log(`🎭 Staging branch created: ${stagingBranch.name}`);
@@ -143,10 +141,10 @@ import { Worker, Hyperdrive } from "alchemy/cloudflare";
 
 // Create PlanetScale database
 const database = await Database("my-app-db", {
-  name: "my-app-db", 
+  name: "my-app-db",
   organizationId: process.env.PLANETSCALE_ORG_ID!,
   clusterSize: "PS_10",
-  allowDataBranching: true
+  allowDataBranching: true,
 });
 
 // Create a production branch
@@ -156,7 +154,7 @@ const prodBranch = await Branch("production", {
   databaseName: database.name,
   parentBranch: "main",
   isProduction: true,
-  clusterSize: "PS_20"
+  clusterSize: "PS_20",
 });
 
 // Connect to Cloudflare with Hyperdrive for connection pooling
@@ -168,11 +166,11 @@ const hyperdrive = await Hyperdrive("planetscale-hyperdrive", {
     host: `${database.name}.us-east.psdb.cloud`,
     port: 3306,
     user: process.env.PLANETSCALE_DB_USERNAME!,
-    password: alchemy.secret(process.env.PLANETSCALE_DB_PASSWORD!)
+    password: alchemy.secret(process.env.PLANETSCALE_DB_PASSWORD!),
   },
   caching: {
-    disabled: false
-  }
+    disabled: false,
+  },
 });
 
 // Create a Cloudflare Worker that uses the database
@@ -180,9 +178,9 @@ const worker = await Worker("planetscale-api", {
   name: "planetscale-api",
   entrypoint: "./src/worker.ts",
   bindings: {
-    DATABASE: hyperdrive
+    DATABASE: hyperdrive,
   },
-  url: true
+  url: true,
 });
 
 console.log(`🚀 Worker deployed: ${worker.url}`);
@@ -224,6 +222,7 @@ The script will create your database and branches. You should see output like:
 ```
 
 You can now:
+
 - Access your database in the [PlanetScale console](https://app.planetscale.com)
 - Create connection strings for your branches
 - Start developing schema changes in your development branch

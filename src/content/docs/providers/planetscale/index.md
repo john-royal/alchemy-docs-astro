@@ -1,9 +1,8 @@
 ---
-title: PlanetScale Provider for Alchemy
+title: PlanetScale
 description: Learn how to use Alchemy's PlanetScale provider to manage serverless MySQL databases with branching workflows and zero-downtime schema changes.
 ---
 
-# PlanetScale
 
 PlanetScale is a serverless database platform based on MySQL that provides horizontal scaling, branching workflows, and zero-downtime schema changes. Alchemy provides resources to manage PlanetScale databases and branches programmatically.
 

@@ -5,8 +5,6 @@ sidebar:
   order: 4
 ---
 
-# Nuxt
-
 This guide walks through deploying a full-stack Nuxt 3 application with a backend Pipeline to Cloudflare using Alchemy.
 
 ## Create a new Nuxt 3 Project
@@ -16,25 +14,25 @@ Start by creating a new Nuxt 3 project:
 ::: code-group
 
 ```sh [bun]
-bun create nuxt-app 
+bun create nuxt-app
 cd my-nuxt-app
 bun install
 ```
 
 ```sh [npm]
-npm create nuxt-app 
+npm create nuxt-app
 cd my-nuxt-app
 npm install
 ```
 
 ```sh [pnpm]
-pnpm create nuxt-app 
+pnpm create nuxt-app
 cd my-nuxt-app
 pnpm install
 ```
 
 ```sh [yarn]
-yarn create nuxt-app 
+yarn create nuxt-app
 cd my-nuxt-app
 yarn install
 ```
@@ -157,7 +155,6 @@ console.log({
 await app.finalize();
 ```
 
-
 ## Infer Binding Types
 
 Create an `src/env.d.ts` file to support type hints for Cloudflare bindings:
@@ -166,11 +163,11 @@ Create an `src/env.d.ts` file to support type hints for Cloudflare bindings:
 // src/env.d.ts
 /// <reference types="@cloudflare/workers-types" />
 
-import type { website } from './alchemy.run';
+import type { website } from "./alchemy.run";
 
 export type WorkerEnv = typeof website.Env;
 
-declare module 'cloudflare:workers' {
+declare module "cloudflare:workers" {
   namespace Cloudflare {
     export interface Env extends WorkerEnv {}
   }
@@ -286,7 +283,6 @@ button {
 </style>
 ```
 
-
 ## Deploy Your Application
 
 Login to Cloudflare:
@@ -371,7 +367,7 @@ This will start a local development server:
 
 ```sh
 Nuxt 3.9.0 with Nitro 2.8.1
- 
+
   ➜ Local:    http://localhost:3000/
   ➜ Network:  use --host to expose this
 ```

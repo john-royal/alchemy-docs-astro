@@ -5,7 +5,6 @@ sidebar:
   order: 1
 ---
 
-# Telemetry
 
 Alchemy collects anonymous usage telemetry to help us understand how the tool is being used and improve the developer experience.
 

@@ -1,9 +1,8 @@
 ---
-title: Managing AWS KMS Keys with Alchemy
+title: Key
 description: Learn how to create, update, and manage AWS KMS Keys using Alchemy Cloud Control.
 ---
 
-# Key
 
 The Key resource lets you manage [AWS KMS Keys](https://docs.aws.amazon.com/kms/latest/userguide/) for encrypting and decrypting data securely within your AWS environment.
 

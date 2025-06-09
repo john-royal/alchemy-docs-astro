@@ -1,9 +1,8 @@
 ---
-title: Managing Stripe Tax Rates with Alchemy
+title: TaxRate
 description: Learn how to create and manage Stripe Tax Rates for automatic tax calculations using Alchemy.
 ---
 
-# TaxRate
 
 The TaxRate resource lets you create and manage [Stripe Tax Rates](https://stripe.com/docs/api/tax_rates) for automatic tax calculations on invoices and checkout sessions.
 

@@ -1,9 +1,8 @@
 ---
-title: Managing AWS AmazonMQ Configurations with Alchemy
+title: Configuration
 description: Learn how to create, update, and manage AWS AmazonMQ Configurations using Alchemy Cloud Control.
 ---
 
-# Configuration
 
 The Configuration resource lets you manage [AWS AmazonMQ Configurations](https://docs.aws.amazon.com/amazonmq/latest/userguide/) for creating and managing message brokers in the cloud.
 

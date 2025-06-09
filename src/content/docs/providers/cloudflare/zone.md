@@ -1,9 +1,7 @@
 ---
-title: Managing Cloudflare Zones (Domains) with Alchemy
+title: Zone
 description: Learn how to manage your Cloudflare Zones (domains) including DNS settings and other configurations using Alchemy.
 ---
-
-# Zone
 
 The Zone resource lets you manage [Cloudflare DNS zones](https://developers.cloudflare.com/dns/zone-setups/) and their configuration settings.
 

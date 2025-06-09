@@ -1,11 +1,9 @@
 ---
-title: TanstackStart
+title: TanStack Start
 description: Guide to deploying TanStack Start applications to Cloudflare Workers using Alchemy. Learn configuration for Cloudflare and local development setup.
 sidebar:
   order: 2
 ---
-
-# TanStack Start
 
 This guide walks through how to deploy a TanStack Start application to Cloudflare Workers with Alchemy.
 
@@ -95,7 +93,7 @@ Add the TanStackStart resource to your `alchemy.run.ts` file just before the `fi
 
 ```ts
 const website = await TanStackStart("tanstack-website", {
-  command: "bun run build"
+  command: "bun run build",
 });
 
 console.log({
@@ -148,6 +146,7 @@ export default defineConfig({
 
 > [!CAUTION]
 > Make sure to configure this shim or else local development won't work for server functions or middleware.
+>
 > ```ts
 > // Provides a polyfill for Cloudflare Workers env during development
 > cloudflareWorkersDevEnvironmentShim(),
@@ -159,7 +158,10 @@ Modify `./src/utils/users.tsx` to support non-local domains:
 
 ```ts
 // must check if window is not undefined since the bundler also places this code server-side
-export const DEPLOY_URL = typeof window !== "undefined" ? window.location.origin : "http://localhost:3000";
+export const DEPLOY_URL =
+  typeof window !== "undefined"
+    ? window.location.origin
+    : "http://localhost:3000";
 ```
 
 ## Deploy Your Application

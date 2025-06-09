@@ -5,7 +5,6 @@ sidebar:
   order: 2
 ---
 
-# Phase
 
 An Alchemy app can run in one of three phases:
 1. `"up"` - resources should be created, updated and deleted as necessary.

@@ -5,17 +5,14 @@ sidebar:
   order: 2
 ---
 
-# React Router
-
 This guide demonstrates how to deploy a [React Router](https://reactrouter.com/) (formerly Remix.js) application to Cloudflare with Alchemy.
 
 ## Create a new React Router Project
 
-Start by creating new React Router project using the [Cloudflare template](https://developers.cloudflare.com/workers/frameworks/framework-guides/react-router/). 
+Start by creating new React Router project using the [Cloudflare template](https://developers.cloudflare.com/workers/frameworks/framework-guides/react-router/).
 
 > [!NOTE]
 > This template assumes you're using wrangler. We will adapt it to Alchemy (and learn some Alchemy concepts along the way).
-
 
 ::: code-group
 
@@ -71,6 +68,7 @@ pnpm add -D @cloudflare/workers-types
 yarn add alchemy cloudflare
 yarn add -D @cloudflare/workers-types
 ```
+
 :::
 
 ## Create `alchemy.run.ts`
@@ -114,7 +112,7 @@ import type { website } from "../alchemy.run.ts";
 export type CloudflareEnv = typeof website.Env;
 
 declare global {
-  type Env = CloudflareEnv
+  type Env = CloudflareEnv;
 }
 
 declare module "cloudflare:workers" {
@@ -166,6 +164,7 @@ pnpm wrangler login
 ```sh [yarn]
 yarn wrangler login
 ```
+
 :::
 
 > [!TIP]
@@ -196,6 +195,7 @@ yarn tsx ./alchemy.run
 :::
 
 It will log out the URL of your new React Router website hosted on Cloudflare:
+
 ```
 {
   url: "https://website.${your-sub-domain}.workers.dev",

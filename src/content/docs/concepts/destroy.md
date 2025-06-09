@@ -4,7 +4,6 @@ description: Learn how to safely destroy infrastructure resources with Alchemy. 
 sidebar:
   order: 9
 ---
-# Destroy
 
 Resource destruction in Alchemy removes resources from both your state file and the underlying infrastructure.
 

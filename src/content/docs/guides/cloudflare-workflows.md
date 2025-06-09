@@ -1,11 +1,9 @@
 ---
-title: Workflows
+title: Workflow
 description: Create, bind, and trigger Cloudflare Workflows from your Alchemy-managed Worker applications. Learn how to orchestrate complex processes serverlessly.
 sidebar:
   order: 5
 ---
-
-# Workflow
 
 This guide explains how to create, bind and use Cloudflare Workflows within your Worker scripts.
 
@@ -127,7 +125,7 @@ import { Worker, Workflow } from "alchemy/cloudflare";
 
 // Create the provider Worker with the workflow
 const host = await Worker("Host", {
-  entrypoint: "./workflow-provider.ts", 
+  entrypoint: "./workflow-provider.ts",
   bindings: {
     SHARED_PROCESSOR: new Workflow("shared-processor", {
       className: "SharedProcessor",
@@ -153,12 +151,12 @@ Alternatively, when creating a workflow binding in a client Worker, you can refe
 ```ts
 import { Worker, Workflow } from "alchemy/cloudflare";
 
-const hostWorkerName = "host"
+const hostWorkerName = "host";
 
 const workflow = new Workflow("shared-processor", {
   className: "SharedProcessor",
   workflowName: "shared-processing-workflow",
-  scriptName: hostWorkerName
+  scriptName: hostWorkerName,
 });
 
 // First, create the Worker that defines the workflow
@@ -194,12 +192,12 @@ export class SharedProcessor {
   }
 
   async run(event, step) {
-    const result = await step.do('process-shared-data', async () => {
+    const result = await step.do("process-shared-data", async () => {
       console.log("Processing shared data", event.payload);
       return {
         success: true,
         processedId: event.payload.id,
-        message: "Data processed successfully"
+        message: "Data processed successfully",
       };
     });
 
@@ -209,8 +207,8 @@ export class SharedProcessor {
 
 export default {
   async fetch(request: Request) {
-    return new Response('Workflow Provider Worker is running!');
-  }
+    return new Response("Workflow Provider Worker is running!");
+  },
 };
 ```
 
@@ -225,8 +223,8 @@ import { env } from "cloudflare:workers";
 export default {
   async fetch(request: Request) {
     const url = new URL(request.url);
-    
-    if (url.pathname === '/trigger-shared-workflow') {
+
+    if (url.pathname === "/trigger-shared-workflow") {
       try {
         // Trigger the workflow defined in another worker
         const workflow = env.SHARED_PROCESSOR;
@@ -238,17 +236,20 @@ export default {
           details: await instance.status(),
           success: true,
           crossScriptWorking: true,
-          params: params
+          params: params,
         });
       } catch (error) {
-        return Response.json({
-          error: error.message,
-          crossScriptWorking: false
-        }, { status: 500 });
+        return Response.json(
+          {
+            error: error.message,
+            crossScriptWorking: false,
+          },
+          { status: 500 }
+        );
       }
     }
 
-    return new Response('Client Worker is running!');
-  }
+    return new Response("Client Worker is running!");
+  },
 };
 ```

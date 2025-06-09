@@ -5,7 +5,6 @@ sidebar:
   order: 5
 ---
 
-# Testing
 
 Alchemy resources are easy to test since they're just functions, but Alchemy also offers a simple `alchemy.test` utility to help isolate your [Scopes](../concepts/scope.md) for each test suite.
 

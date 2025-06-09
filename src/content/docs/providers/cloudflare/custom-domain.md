@@ -1,9 +1,7 @@
 ---
-title: Managing Cloudflare Custom Domains with Alchemy
+title: CustomDomain
 description: Learn how to configure and manage Custom Domains for your Cloudflare services (like Pages, Workers) using Alchemy.
 ---
-
-# CustomDomain
 
 The CustomDomain resource lets you attach a [custom domain](https://developers.cloudflare.com/workers/configuration/routing/custom-domains/) to a Cloudflare Worker.
 

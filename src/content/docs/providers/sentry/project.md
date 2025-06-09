@@ -1,9 +1,8 @@
 ---
-title: Managing Sentry Projects with Alchemy
+title: Sentry Project
 description: Learn how to create, configure, and manage Sentry projects using Alchemy.
 ---
 
-# Sentry Project
 
 Create and manage Sentry projects.
 

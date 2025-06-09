@@ -3,8 +3,6 @@ title: Getting Started with Alchemy
 description: Quick start guide to using Alchemy, the TypeScript-native Infrastructure-as-Code library. Deploy your first Cloudflare Worker with type-safe infrastructure code.
 ---
 
-# Getting Started with Alchemy
-
 This guide will deploy a Cloudflare Worker and bind resources to it with Alchemy.
 
 > [!TIP]

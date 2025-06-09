@@ -5,8 +5,6 @@ sidebar:
   order: 6
 ---
 
-# Queue
-
 This guide explains how to create and use Cloudflare Queues with your Worker applications.
 
 > [!TIP]
@@ -33,7 +31,7 @@ export const queueWithDlq = await Queue<{
   name: string;
   email: string;
 }>("my-worker-queue-with-dlq", {
-  dlq: dlq  // or dlq: "failed-messages-dlq"
+  dlq: dlq, // or dlq: "failed-messages-dlq"
 });
 ```
 
@@ -67,7 +65,7 @@ export default {
       name: "John Doe",
       email: "john.doe@example.com",
     });
-    
+
     return new Response("Ok");
   },
 };
@@ -96,7 +94,7 @@ import type { queue, worker } from "../alchemy.run";
 
 export default {
   // other handlers like fetch...
-  
+
   // Process queue messages with proper type safety
   async queue(batch: typeof queue.Batch, env: typeof worker.Env) {
     // Process each message in the batch
@@ -105,7 +103,7 @@ export default {
       // Acknowledge individual message
       message.ack();
     }
-    
+
     // Or acknowledge all messages at once
     // batch.ackAll();
   },
@@ -165,9 +163,9 @@ export const queue = await Queue<{
 export const worker = await Worker("example-worker", {
   entrypoint: "./src/worker.ts",
   bindings: {
-    QUEUE: queue,  // Producer: bind queue for sending messages
+    QUEUE: queue, // Producer: bind queue for sending messages
   },
-  eventSources: [queue],  // Consumer: register worker to receive messages
+  eventSources: [queue], // Consumer: register worker to receive messages
 });
 
 // Generate wrangler config
@@ -191,7 +189,7 @@ export default {
     });
     return new Response("Ok");
   },
-  
+
   // Consumer: process messages with type-safe batch
   async queue(batch: typeof queue.Batch, env: typeof worker.Env) {
     for (const message of batch.messages) {

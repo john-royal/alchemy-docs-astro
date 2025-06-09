@@ -1,9 +1,8 @@
 ---
-title: Managing Static YAML Files with Alchemy FS Provider
+title: StaticYamlFile
 description: Learn how to create and manage static YAML (.yaml, .yml) files with proper formatting using Alchemy's FS provider.
 ---
 
-# StaticYamlFile
 
 The StaticYamlFile resource creates YAML files with formatted content using the [YAML](https://yaml.org/) format.
 

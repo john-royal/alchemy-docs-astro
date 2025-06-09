@@ -5,8 +5,6 @@ sidebar:
   order: 3
 ---
 
-# Redwood
-
 This guide demonstrates how to deploy a Redwood application with Drizzle to Cloudflare using Alchemy.
 
 ## Create a new Redwood Project
@@ -103,10 +101,11 @@ export const website = await Redwood("redwood-website", {
 ```
 
 Log out the website's URL:
+
 ```ts
 console.log({
-  url: website.url
-})
+  url: website.url,
+});
 ```
 
 ## Deploy Redwood Application
@@ -156,6 +155,7 @@ yarn tsx ./alchemy.run
 :::
 
 It should log out the URL of your deployed site:
+
 ```sh
 {
   url: "https://your-site.your-sub-domain.workers.dev",
@@ -195,8 +195,12 @@ export const users = sqliteTable("users", {
   salt: text("salt"),
   resetToken: text("reset_token"),
   resetTokenExpiresAt: integer("reset_token_expires_at"),
-  createdAt: integer("created_at", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`),
+  createdAt: integer("created_at", { mode: "timestamp" }).default(
+    sql`CURRENT_TIMESTAMP`
+  ),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).default(
+    sql`CURRENT_TIMESTAMP`
+  ),
 });
 
 // Add a new posts table
@@ -205,8 +209,12 @@ export const posts = sqliteTable("posts", {
   title: text("title").notNull(),
   body: text("body").notNull(),
   userId: text("user_id").references(() => users.id),
-  createdAt: integer("created_at", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer("updated_at", { mode: "timestamp" }).default(sql`CURRENT_TIMESTAMP`),
+  createdAt: integer("created_at", { mode: "timestamp" }).default(
+    sql`CURRENT_TIMESTAMP`
+  ),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).default(
+    sql`CURRENT_TIMESTAMP`
+  ),
 });
 ```
 
@@ -261,7 +269,6 @@ yarn tsx ./alchemy.run
 :::
 
 The D1Database resource will automatically apply migrations from the directory we specified earlier (`migrationsDir: "drizzle"`).
-
 
 ## Local Development
 

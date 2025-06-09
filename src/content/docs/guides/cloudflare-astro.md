@@ -5,8 +5,6 @@ sidebar:
   order: 1.4
 ---
 
-# Astro
-
 This guide demonstrates how to deploy an Astro application with server-side rendering to Cloudflare using Alchemy.
 
 ## Create a new Astro Project
@@ -38,6 +36,7 @@ cd my-astro-app
 :::
 
 When prompted:
+
 - Choose "Just the basics" template
 - Select "Yes" for TypeScript
 - Choose "Strictest" for TypeScript configuration
@@ -77,12 +76,12 @@ yarn add -D alchemy cloudflare @cloudflare/workers-types
 Update your `astro.config.mjs` to use the Cloudflare adapter:
 
 ```js
-import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
+import { defineConfig } from "astro/config";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'server',
+  output: "server",
   adapter: cloudflare(),
 });
 ```
@@ -147,24 +146,27 @@ declare namespace App {
 Create `src/pages/api/hello.ts` to demonstrate server-side functionality:
 
 ```ts
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async ({ request }) => {
   // Access Cloudflare runtime context
   const runtime = request.cf;
-  
-  return new Response(JSON.stringify({
-    message: "Hello from Astro API on Cloudflare!",
-    timestamp: new Date().toISOString(),
-    colo: runtime?.colo || "unknown",
-    country: runtime?.country || "unknown",
-    city: runtime?.city || "unknown",
-  }), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+
+  return new Response(
+    JSON.stringify({
+      message: "Hello from Astro API on Cloudflare!",
+      timestamp: new Date().toISOString(),
+      colo: runtime?.colo || "unknown",
+      country: runtime?.country || "unknown",
+      city: runtime?.city || "unknown",
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 };
 ```
 

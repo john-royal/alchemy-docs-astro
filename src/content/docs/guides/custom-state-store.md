@@ -5,8 +5,6 @@ sidebar:
   order: 7
 ---
 
-# Custom State Store
-
 Alchemy's state management system is designed to be pluggable, allowing you to implement your own storage backends. This guide walks you through creating a custom state store implementation.
 
 > [!NOTE]  
@@ -20,28 +18,28 @@ All state stores in Alchemy implement the `StateStore` interface:
 export interface StateStore {
   /** Initialize the state container if one is required */
   init?(): Promise<void>;
-  
+
   /** Delete the state container if one exists */
   deinit?(): Promise<void>;
-  
+
   /** List all resources in the given stage. */
   list(): Promise<string[]>;
-  
+
   /** Return the number of items in this store */
   count(): Promise<number>;
-  
+
   /** Get a state by key */
   get(key: string): Promise<State | undefined>;
-  
+
   /** Get multiple states by their keys */
   getBatch(ids: string[]): Promise<Record<string, State>>;
-  
+
   /** Get all states in the store */
   all(): Promise<Record<string, State>>;
-  
+
   /** Set a state for a key */
   set(key: string, value: State): Promise<void>;
-  
+
   /** Delete a state by key */
   delete(key: string): Promise<void>;
 }
@@ -68,7 +66,7 @@ import { serialize, deserialize } from "alchemy";
 const serializedData = await serialize(this.scope, value);
 
 // When retrieving state:
-const state = await deserialize(this.scope, rawData) as State;
+const state = (await deserialize(this.scope, rawData)) as State;
 ```
 
 > [!IMPORTANT]
@@ -160,26 +158,28 @@ Here's a simple in-memory state store implementation:
 export class InMemoryStateStore implements StateStore {
   // Map to store the state data in memory
   private stateMap: Map<string, any> = new Map();
-  
+
   constructor(
     public readonly scope: Scope,
     private options: { namespace?: string } = {}
   ) {
     // Create a scope-specific namespace for the state
-    this.namespace = options.namespace || scope.chain.join('/');
+    this.namespace = options.namespace || scope.chain.join("/");
   }
 
   // Optional init method, not really needed for in-memory store
   async init(): Promise<void> {
     // Nothing to initialize for in-memory store
-    console.log(`Initialized in-memory state store for scope: ${this.namespace}`);
+    console.log(
+      `Initialized in-memory state store for scope: ${this.namespace}`
+    );
   }
 
   // Optional cleanup method
   async deinit(): Promise<void> {
     // Clear all state for this scope
     const keyPrefix = `${this.namespace}/`;
-    
+
     for (const key of this.stateMap.keys()) {
       if (key.startsWith(keyPrefix)) {
         this.stateMap.delete(key);
@@ -191,14 +191,14 @@ export class InMemoryStateStore implements StateStore {
   async list(): Promise<string[]> {
     const keyPrefix = `${this.namespace}/`;
     const result: string[] = [];
-    
+
     for (const key of this.stateMap.keys()) {
       if (key.startsWith(keyPrefix)) {
         // Remove the prefix and return the actual resource ID
         result.push(key.substring(keyPrefix.length));
       }
     }
-    
+
     return result;
   }
 
@@ -211,14 +211,14 @@ export class InMemoryStateStore implements StateStore {
   async get(key: string): Promise<State | undefined> {
     const fullKey = `${this.namespace}/${key}`;
     const serializedState = this.stateMap.get(fullKey);
-    
+
     if (!serializedState) {
       return undefined;
     }
-    
+
     // Deserialize the state
-    const state = await deserialize(this.scope, serializedState) as State;
-    
+    const state = (await deserialize(this.scope, serializedState)) as State;
+
     // Ensure scope is set on output
     return {
       ...state,
@@ -232,14 +232,14 @@ export class InMemoryStateStore implements StateStore {
   // Get multiple states
   async getBatch(ids: string[]): Promise<Record<string, State>> {
     const result: Record<string, State> = {};
-    
+
     for (const id of ids) {
       const state = await this.get(id);
       if (state) {
         result[id] = state;
       }
     }
-    
+
     return result;
   }
 
@@ -252,10 +252,10 @@ export class InMemoryStateStore implements StateStore {
   // Set a state
   async set(key: string, value: State): Promise<void> {
     const fullKey = `${this.namespace}/${key}`;
-    
+
     // Serialize the state to handle cycles
     const serializedData = await serialize(this.scope, value);
-    
+
     // Store in the map
     this.stateMap.set(fullKey, serializedData);
   }
@@ -281,7 +281,7 @@ Always use Alchemy's `serialize` and `deserialize` functions to handle state dat
 const serializedData = await serialize(this.scope, value);
 
 // When retrieving state:
-const state = await deserialize(this.scope, rawData) as State;
+const state = (await deserialize(this.scope, rawData)) as State;
 ```
 
 These functions handle cycles in the state graph and encrypt/decrypt secrets.
@@ -341,7 +341,7 @@ To use your custom state store, pass it to the Alchemy app initialization:
 const app = await alchemy("my-app", {
   stage: "prod",
   phase: process.argv.includes("--destroy") ? "destroy" : "up",
-  stateStore: (scope) => new InMemoryStateStore(scope)
+  stateStore: (scope) => new InMemoryStateStore(scope),
 });
 
 // ... resource declarations ...
@@ -360,29 +360,30 @@ import { alchemy } from "alchemy";
 import { InMemoryStateStore } from "./in-memory-state-store";
 
 const test = alchemy.test(import.meta, {
-  prefix: BRANCH_PREFIX
-})
+  prefix: BRANCH_PREFIX,
+});
 
 describe("InMemoryStateStore", () => {
-  
   test("basic operations", async (scope) => {
     const store = new InMemoryStateStore(scope);
     await store.init();
-    
+
     // Test basic operations
-    await store.set("test-key", { /* sample state */ });
+    await store.set("test-key", {
+      /* sample state */
+    });
     const state = await store.get("test-key");
     expect(state).toBeDefined();
-    
+
     // Test list and count
     const keys = await store.list();
     expect(keys).toContain("test-key");
-    
+
     // Test delete
     await store.delete("test-key");
     const deletedState = await store.get("test-key");
     expect(deletedState).toBeUndefined();
-    
+
     await store.deinit();
   });
 });

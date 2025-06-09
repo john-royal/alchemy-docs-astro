@@ -1,9 +1,8 @@
 ---
-title: Managing Cloudflare Browser Rendering with Alchemy
+title: BrowserRendering
 description: Learn how to use Cloudflare Browser Rendering with Alchemy for taking screenshots and automating browser tasks at the edge.
 ---
 
-# BrowserRendering
 
 [Cloudflare Browser Rendering](https://developers.cloudflare.com/browser-rendering/) allows you to run a full browser instance within your Worker to take screenshots, generate PDFs, and automate browser tasks.
 

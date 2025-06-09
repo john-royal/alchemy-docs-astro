@@ -1,9 +1,8 @@
 ---
-title: Managing Static CSS Files with Alchemy FS Provider
+title: StaticCSSFile
 description: Learn how to create and manage static CSS (.css) files with proper formatting using Alchemy's FS provider.
 ---
 
-# StaticCSSFile
 
 The StaticCSSFile resource creates and manages static CSS files in your project using [Alchemy's File System](https://alchemy.run/docs/concepts/fs) capabilities.
 

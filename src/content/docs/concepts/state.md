@@ -5,7 +5,6 @@ sidebar:
   order: 3
 ---
 
-# State
 
 Alchemy uses a transparent and pluggable state management system to track resource lifecycles and enable idempotent operations. It's designed to be simple, with multiple backend options ranging from local files to cloud storage.
 

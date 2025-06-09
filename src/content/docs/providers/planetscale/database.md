@@ -1,9 +1,8 @@
 ---
-title: Managing PlanetScale Databases with Alchemy
+title: Database
 description: Learn how to create, configure, and manage PlanetScale serverless MySQL databases using Alchemy.
 ---
 
-# Database
 
 The Database resource lets you create and manage [PlanetScale databases](https://planetscale.com/docs/concepts/database) with comprehensive configuration options for scaling, migrations, and security.
 

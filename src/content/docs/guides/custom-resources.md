@@ -1,11 +1,9 @@
 ---
-title: Custom Resource
+title: Custom Resources
 description: Learn how to build your own custom infrastructure resources for Alchemy using AI-assistance. Extend Alchemy to support any cloud service or API.
 sidebar:
   order: 6
 ---
-
-# Custom Resources
 
 In Alchemy, a Resource is "just a function". This makes it super easy to generate resources for your use-cases using Agentic IDEs like Cursor, Claude Code, Windsurf, etc.
 

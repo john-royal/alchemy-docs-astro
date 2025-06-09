@@ -43,9 +43,10 @@ export default defineConfig({
         },
         {
           label: "Providers",
-          autogenerate: { directory: "providers" },
+          autogenerate: { directory: "providers", collapsed: true },
         },
       ],
     }),
   ],
+  trailingSlash: "never",
 });

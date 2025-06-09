@@ -1,11 +1,9 @@
 ---
-title: Vite.js
+title: Vite
 description: Step-by-step guide to deploying Vite.js React applications with API endpoints to Cloudflare Workers using Alchemy's Infrastructure-as-Code approach.
 sidebar:
   order: 1.5
 ---
-
-# Vite
 
 This guide demonstrates how to deploy a Vite.js React TypeScript application with a Hono API to Cloudflare using Alchemy.
 

@@ -1,9 +1,8 @@
 ---
-title: Managing Cloudflare D1 Databases with Alchemy
+title: D1Database
 description: Learn how to create, query, and manage Cloudflare D1 Databases using Alchemy for serverless SQL databases.
 ---
 
-# D1Database
 
 The D1Database component lets you add [Cloudflare D1 Databases](https://developers.cloudflare.com/d1/) to your app.
 

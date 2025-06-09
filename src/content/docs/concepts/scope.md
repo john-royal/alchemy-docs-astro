@@ -5,7 +5,6 @@ sidebar:
   order: 2
 ---
 
-# Scope
 
 Scopes in Alchemy are hierarchical containers that organize resources and other scopes, similar to a file system.
 

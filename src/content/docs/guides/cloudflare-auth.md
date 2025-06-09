@@ -5,9 +5,8 @@ sidebar:
   order: 0
 ---
 
-# Cloudflare Auth
-
 There are three supported ways of authorizing Alchemy with Cloudflare:
+
 1. API Token - a token you create once with limited scopes
 2. OAuth - a token created by `wrangler login`
 3. Global API Key (legacy) - the global, highly permissive API key
@@ -19,6 +18,7 @@ First you need to [create an API Token](https://developers.cloudflare.com/fundam
 By default, Alchemy will use the `CLOUDFLARE_API_TOKEN` environment variable if set.
 
 You can store the token in your `.env` file
+
 ```sh
 CLOUDFLARE_API_TOKEN=<token>
 ```
@@ -49,7 +49,7 @@ You can explciitly set an `apiToken` when creating a Cloudflare Resource, such a
 
 ```ts
 await Worker("my-worker", {
-  apiToken: alchemy.secret(process.env.MY_TOKEN)
+  apiToken: alchemy.secret(process.env.MY_TOKEN),
 });
 ```
 
@@ -109,13 +109,14 @@ yarn tsx ./alchemy.run.ts
 After you verify your Cloudflare Account's Email, you will be given a [Global API Key](https://developers.cloudflare.com/fundamentals/api/get-started/keys/).
 
 > [!CAUTION]
-> These keys have several limitations that make them less secure than API tokens. Whenever possible, use API tokens to interact with the Cloudflare API. 
+> These keys have several limitations that make them less secure than API tokens. Whenever possible, use API tokens to interact with the Cloudflare API.
 >
 > See [Cloudflare's API Docs](https://developers.cloudflare.com/api/).
 
 By default, Alchemy will use the `CLOUDFLARE_API_KEY` environment variable if set.
 
 You can store the token in your `.env` file
+
 ```sh
 CLOUDFLARE_API_KEY=<token>
 ```
@@ -146,10 +147,9 @@ You can explciitly set an `apiKey` when creating a Cloudflare Resource, such as 
 
 ```ts
 await Worker("my-worker", {
-  apiKey: alchemy.secret(process.env.MY_GLOBAL_KEY)
+  apiKey: alchemy.secret(process.env.MY_GLOBAL_KEY),
 });
 ```
-
 
 > [!CAUTION]
 > To use `alchemy.secret`, you must set a `password` when initializing your alchemy app. See [Encryption Password](../concepts/secret.md#encryption-password).
@@ -185,14 +185,12 @@ You can explicitly set `email` when creating a Cloudlfare Resource:
 ```ts
 await Worker("my-worker", {
   apiKey: alchemy.secret(process.env.MY_GLOBAL_KEY),
-  email: "me@example.com"
+  email: "me@example.com",
 });
 ```
 
-
 > [!CAUTION]
 > To use `alchemy.secret`, you must set a `password` when initializing your alchemy app. See [Encryption Password](../concepts/secret.md#encryption-password).
-
 
 ## Account ID
 
@@ -248,10 +246,9 @@ CLOUDFLARE_ACCOUNT_ID=<account-id> yarn tsx ./alchemy.run.ts
 :::
 
 Or by setting `accountId` when creating a Cloudflare Resource:
+
 ```ts
 await Worker("my-worker", {
   accountId: "my-account-id",
 });
 ```
-
-

@@ -1,9 +1,8 @@
 ---
-title: Managing Stripe Entitlements Features with Alchemy
+title: EntitlementsFeature
 description: Learn how to create and manage Stripe Entitlements Features for product access control using Alchemy.
 ---
 
-# EntitlementsFeature
 
 The EntitlementsFeature resource lets you create and manage [Stripe Entitlements Features](https://stripe.com/docs/api/entitlements/feature) for controlling access to product features.
 

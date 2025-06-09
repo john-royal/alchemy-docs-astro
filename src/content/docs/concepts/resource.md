@@ -5,7 +5,6 @@ sidebar:
   order: 1
 ---
 
-# Resource
 
 Resources are the core building blocks of Alchemy. Each resource represents a piece of infrastructure or configuration that can be created, updated, and deleted automatically.
 

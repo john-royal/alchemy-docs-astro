@@ -1,9 +1,8 @@
 ---
-title: Managing Cloudflare Email Routing with Alchemy
+title: EmailRouting
 description: Learn how to enable and configure email routing for your Cloudflare zone using Alchemy.
 ---
 
-# EmailRouting
 
 Enable and configure email routing for your Cloudflare zone to start receiving and routing emails sent to your domain.
 

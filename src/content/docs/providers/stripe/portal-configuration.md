@@ -1,9 +1,8 @@
 ---
-title: Managing Stripe Portal Configurations with Alchemy
+title: PortalConfiguration
 description: Learn how to create and manage Stripe Customer Portal Configurations using Alchemy.
 ---
 
-# PortalConfiguration
 
 The PortalConfiguration resource lets you create and manage [Stripe Customer Portal Configurations](https://stripe.com/docs/api/customer_portal/configuration) for customizing the customer portal experience.
 

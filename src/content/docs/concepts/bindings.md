@@ -5,7 +5,6 @@ sidebar:
   order: 100
 ---
 
-# Bindings
 
 Bindings allow resources to connect to each other in a type-safe way. In Alchemy, bindings are most commonly used with Cloudflare Workers to give them access to other resources.
 

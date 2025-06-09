@@ -1,11 +1,9 @@
 ---
-title: Worker
+title: Cloudflare Workers
 description: Deploy serverless functions at the edge with Cloudflare Workers. Learn how to build fast, scalable applications with Alchemy's Cloudflare Worker resources.
 sidebar:
   order: 1
 ---
-
-# Cloudflare Workers
 
 Alchemy provides comprehensive support for Cloudflare Workers, enabling you to deploy serverless functions at the edge with powerful features like Durable Objects and Workflows.
 
@@ -29,14 +27,14 @@ Your worker script (`./src/worker.ts`):
 export default {
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
-    
+
     if (url.pathname === "/hello") {
-      return Response.json({ 
+      return Response.json({
         message: "Hello from the edge!",
-        location: request.cf?.colo 
+        location: request.cf?.colo,
       });
     }
-    
+
     return new Response("Not Found", { status: 404 });
   },
 };
@@ -56,7 +54,6 @@ export const worker = await Worker("ApiWorker", {
   },
 });
 ```
-
 
 ## Durable Objects
 
@@ -82,7 +79,7 @@ export class Counter {
   }
 
   async fetch(request) {
-    let count = await this.state.storage.get("count") || 0;
+    let count = (await this.state.storage.get("count")) || 0;
     count++;
     await this.state.storage.put("count", count);
     return Response.json({ count });
@@ -100,7 +97,7 @@ Orchestrate long-running, complex processes with Cloudflare Workflows:
 import { Worker, Workflow } from "alchemy/cloudflare";
 
 const worker = await Worker("OrderProcessor", {
-  entrypoint: "./worker.ts", 
+  entrypoint: "./worker.ts",
   bindings: {
     ORDER_WORKFLOW: new Workflow("order-processor", {
       className: "OrderProcessor",
@@ -115,11 +112,11 @@ export class OrderProcessor {
     const payment = await step.do("process-payment", async () => {
       return { success: true, transactionId: "tx_123" };
     });
-    
+
     const shipping = await step.do("schedule-shipping", async () => {
       return { trackingNumber: "1Z999AA1234567890" };
     });
-    
+
     return { payment, shipping };
   }
 }
@@ -136,7 +133,7 @@ import { Worker, KVNamespace } from "alchemy/cloudflare";
 
 // Create resources
 const myKV = await KVNamespace("UserSessions", {
-  title: "user-sessions"
+  title: "user-sessions",
 });
 
 // Bind resources to your worker
@@ -144,9 +141,9 @@ const worker = await Worker("ApiWorker", {
   name: "my-api",
   entrypoint: "./src/worker.ts",
   bindings: {
-    USER_SESSIONS: myKV,        // KV namespace binding
-    API_KEY: "secret-key",      // Environment variable
-    DEBUG_MODE: true,           // Boolean value
+    USER_SESSIONS: myKV, // KV namespace binding
+    API_KEY: "secret-key", // Environment variable
+    DEBUG_MODE: true, // Boolean value
   },
 });
 ```
@@ -162,7 +159,7 @@ export default {
     // Use bound resources
     const session = await env.USER_SESSIONS.get("user123");
     const apiKey = env.API_KEY;
-    
+
     return Response.json({ session, debug: env.DEBUG_MODE });
   },
 };

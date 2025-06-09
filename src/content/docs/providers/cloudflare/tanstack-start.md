@@ -1,9 +1,8 @@
 ---
-title: Deploying TanStack Start Applications to Cloudflare with Alchemy
+title: TanStackStart
 description: Learn how to deploy TanStack Start applications to Cloudflare Workers using Alchemy for modern web development.
 ---
 
-# TanStackStart
 
 Deploy a TanStack Start application to Cloudflare Pages with automatically configured defaults.
 

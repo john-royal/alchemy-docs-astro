@@ -1,9 +1,8 @@
 ---
-title: Managing Sentry Client Keys with Alchemy
+title: Sentry Client Key
 description: Learn how to create, configure, and manage Sentry client keys using Alchemy.
 ---
 
-# Sentry Client Key
 
 Create and manage Sentry client keys.
 

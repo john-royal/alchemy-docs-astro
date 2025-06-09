@@ -5,8 +5,6 @@ sidebar:
   order: 5
 ---
 
-# Durable Object
-
 This guide explains how to create, bind and use Cloudflare Durable Objects within your Worker scripts.
 
 > [!TIP]
@@ -22,7 +20,7 @@ import { DurableObjectNamespace } from "alchemy/cloudflare";
 const counter = new DurableObjectNamespace("counter", {
   className: "Counter",
   // whether you want a sqllite db per DO (usually yes!)
-  sqlite: true
+  sqlite: true,
 });
 ```
 
@@ -66,7 +64,7 @@ export class Counter {
     const path = url.pathname;
 
     // Retrieve current count
-    this.count = await this.state.storage.get("count") || 0;
+    this.count = (await this.state.storage.get("count")) || 0;
 
     if (path === "/increment") {
       this.count++;
@@ -94,13 +92,13 @@ import { env } from "cloudflare:workers";
 export default {
   async fetch(request: Request) {
     const url = new URL(request.url);
-    
+
     // Create an ID for the Counter (different IDs = different Counter instances)
     const id = env.COUNTER.idFromName("A");
-    
+
     // Get a stub for the Counter instance
     const stub = env.COUNTER.get(id);
-    
+
     // Forward the request to the Durable Object
     return stub.fetch(request);
   },
@@ -140,7 +138,7 @@ import { Worker, DurableObjectNamespace } from "alchemy/cloudflare";
 
 // Create the provider Worker with the Durable Object
 const host = await Worker("Host", {
-  entrypoint: "./do-provider.ts", 
+  entrypoint: "./do-provider.ts",
   bindings: {
     SHARED_COUNTER: new DurableObjectNamespace("shared-counter", {
       className: "SharedCounter",
@@ -166,7 +164,7 @@ Alternatively, when creating a Durable Object binding in a client Worker, you ca
 ```ts
 import { Worker, DurableObjectNamespace } from "alchemy/cloudflare";
 
-const hostWorkerName = "host"
+const hostWorkerName = "host";
 
 const durableObject = new DurableObjectNamespace("shared-counter", {
   className: "SharedCounter",
@@ -211,26 +209,26 @@ export class SharedCounter {
 
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
-    
+
     // Retrieve current count from durable storage
-    this.counter = await this.state.storage.get("count") || 0;
+    this.counter = (await this.state.storage.get("count")) || 0;
 
     if (url.pathname === "/increment") {
       this.counter++;
       await this.state.storage.put("count", this.counter);
-      
+
       return Response.json({
         action: "increment",
         counter: this.counter,
-        worker: "do-provider"
+        worker: "do-provider",
       });
     }
 
     if (url.pathname === "/get") {
       return Response.json({
-        action: "get", 
+        action: "get",
         counter: this.counter,
-        worker: "do-provider"
+        worker: "do-provider",
       });
     }
 
@@ -240,8 +238,8 @@ export class SharedCounter {
 
 export default {
   async fetch(request: Request): Promise<Response> {
-    return new Response('DO Provider Worker is running!');
-  }
+    return new Response("DO Provider Worker is running!");
+  },
 };
 ```
 
@@ -256,50 +254,60 @@ import { env } from "cloudflare:workers";
 export default {
   async fetch(request: Request): Promise<Response> {
     const url = new URL(request.url);
-    
-    if (url.pathname === '/increment') {
+
+    if (url.pathname === "/increment") {
       try {
         // Access the Durable Object defined in another worker
-        const id = env.SHARED_COUNTER.idFromName('global-counter');
+        const id = env.SHARED_COUNTER.idFromName("global-counter");
         const stub = env.SHARED_COUNTER.get(id);
-        const response = await stub.fetch(new Request('https://example.com/increment'));
+        const response = await stub.fetch(
+          new Request("https://example.com/increment")
+        );
         const data = await response.json();
-        
+
         return Response.json({
           success: true,
-          clientWorker: 'client-worker',
+          clientWorker: "client-worker",
           result: data,
-          crossScriptWorking: true
+          crossScriptWorking: true,
         });
       } catch (error) {
-        return Response.json({
-          error: error.message,
-          crossScriptWorking: false
-        }, { status: 500 });
+        return Response.json(
+          {
+            error: error.message,
+            crossScriptWorking: false,
+          },
+          { status: 500 }
+        );
       }
     }
 
-    if (url.pathname === '/get') {
+    if (url.pathname === "/get") {
       try {
         // Get the current counter value
-        const id = env.SHARED_COUNTER.idFromName('global-counter');
+        const id = env.SHARED_COUNTER.idFromName("global-counter");
         const stub = env.SHARED_COUNTER.get(id);
-        const response = await stub.fetch(new Request('https://example.com/get'));
+        const response = await stub.fetch(
+          new Request("https://example.com/get")
+        );
         const data = await response.json();
-        
+
         return Response.json({
           success: true,
-          clientWorker: 'client-worker',
-          result: data
+          clientWorker: "client-worker",
+          result: data,
         });
       } catch (error) {
-        return Response.json({
-          error: error.message
-        }, { status: 500 });
+        return Response.json(
+          {
+            error: error.message,
+          },
+          { status: 500 }
+        );
       }
     }
 
-    return new Response('Client Worker is running!');
-  }
+    return new Response("Client Worker is running!");
+  },
 };
 ```

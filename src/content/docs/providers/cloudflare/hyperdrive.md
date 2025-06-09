@@ -1,9 +1,8 @@
 ---
-title: Managing Cloudflare Hyperdrive with Alchemy
+title: Hyperdrive
 description: Learn how to configure and use Cloudflare Hyperdrive using Alchemy to accelerate access to your existing databases.
 ---
 
-# Hyperdrive
 
 [Cloudflare Hyperdrive](https://developers.cloudflare.com/hyperdrive/) provides serverless connection pooling and caching for PostgreSQL databases.
 

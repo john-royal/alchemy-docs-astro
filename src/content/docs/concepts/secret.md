@@ -5,7 +5,6 @@ sidebar:
   order: 4
 ---
 
-# Secret
 
 Alchemy provides built-in mechanisms for handling sensitive data securely. This guide explains how to manage secrets in your Alchemy resources.
 
