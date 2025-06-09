@@ -3,18 +3,16 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLlmsTxt from "starlight-llms-txt";
 import sitemap from "@astrojs/sitemap";
+import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://alchemy.run",
-  redirects: {
-    "/guides/[page].html": "/guides/[page]",
-    "/providers/[provider]/[page].html": "/providers/[provider]/[page]",
-    "/providers/[provider]/[section]/[page].html":
-      "/providers/[provider]/[section]/[page]",
-  },
+  adapter: cloudflare(),
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => !page.endsWith(".html") && !page.endsWith(".md"),
+    }),
     starlight({
       title: "Alchemy",
       social: [
@@ -59,7 +57,6 @@ export default defineConfig({
           autogenerate: { directory: "providers", collapsed: true },
         },
       ],
-      plugins: [starlightLlmsTxt()],
     }),
   ],
   trailingSlash: "never",

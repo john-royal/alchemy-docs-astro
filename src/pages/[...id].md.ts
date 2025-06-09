@@ -1,13 +1,17 @@
+import type { APIRoute } from "astro";
 import { getCollection, getEntry } from "astro:content";
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const docs = await getCollection("docs");
   return docs.map((doc) => ({
     params: { id: doc.id },
   }));
-}
+};
 
-export async function GET({ params }: { params: { id: string } }) {
+export const GET: APIRoute<{ id: string }> = async ({ params }) => {
+  if (!params.id) {
+    return new Response("Not found", { status: 404 });
+  }
   const doc = await getEntry("docs", params.id);
   if (!doc) {
     return new Response("Not found", { status: 404 });
@@ -17,4 +21,4 @@ export async function GET({ params }: { params: { id: string } }) {
       "Content-Type": "text/markdown",
     },
   });
-}
+};
