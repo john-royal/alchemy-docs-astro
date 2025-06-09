@@ -3,15 +3,20 @@ title: EmailRouting
 description: Learn how to enable and configure email routing for your Cloudflare zone using Alchemy.
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../../components/command-group.astro";
 
 Enable and configure email routing for your Cloudflare zone to start receiving and routing emails sent to your domain.
 
-> [!CAUTION]
-> Email Routing resources do not work with `wrangler login` (OAuth tokens) due to permission limitations. You must use an API token instead with the following scopes:
-> - **Zone:Read** - to read zone information
-> - **Zone:Edit** - to manage email routing settings
->
-> See the [Cloudflare Auth guide](../../guides/cloudflare-auth.md) for details on setting up API token authentication.
+<Aside type="caution">
+Email Routing resources do not work with `wrangler login` (OAuth tokens) due to permission limitations. You must use an API token instead with the following scopes:
+
+- **Zone:Read** - to read zone information
+- **Zone:Edit** - to manage email routing settings
+
+See the [Cloudflare Auth guide](../../guides/cloudflare-auth.md) for details on setting up API token authentication.
+
+</Aside>
 
 ## Minimal Example
 
@@ -22,7 +27,7 @@ import { EmailRouting } from "alchemy/cloudflare";
 
 await EmailRouting("my-email-routing", {
   zone: "example.com",
-  enabled: true
+  enabled: true,
 });
 ```
 
@@ -34,13 +39,13 @@ Use an existing Zone resource reference:
 import { EmailRouting, Zone } from "alchemy/cloudflare";
 
 const zone = await Zone("my-zone", {
-  name: "example.com"
+  name: "example.com",
 });
 
 await EmailRouting("my-email-routing", {
   zone: zone,
   enabled: true,
-  skipWizard: true
+  skipWizard: true,
 });
 ```
 
@@ -54,7 +59,7 @@ import { EmailRouting } from "alchemy/cloudflare";
 await EmailRouting("custom-email-routing", {
   zone: "example.com",
   enabled: true,
-  skipWizard: true  // Skip DNS setup wizard
+  skipWizard: true, // Skip DNS setup wizard
 });
 ```
 
@@ -67,7 +72,7 @@ import { EmailRouting } from "alchemy/cloudflare";
 
 await EmailRouting("my-email-routing", {
   zone: "example.com",
-  enabled: false
+  enabled: false,
 });
 ```
 

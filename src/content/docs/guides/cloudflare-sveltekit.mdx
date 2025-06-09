@@ -5,70 +5,36 @@ sidebar:
   order: 3
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../components/command-group.astro";
+
 This guide walks through how to deploy a SvelteKit application to Cloudflare Workers with Alchemy.
 
 ## Create a new SvelteKit Project
 
 Start by creating a new SvelteKit project:
 
-::: code-group
+<CommandGroup
+  bun={["bun create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "bun install"]}
+  npm={["npm create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "npm install"]}
+  pnpm={["pnpm create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "pnpm install"]}
+  yarn={["yarn create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "yarn install"]}
+/>
 
-```sh [bun]
-bun create svelte@latest my-sveltekit-app
-cd my-sveltekit-app
-bun install
-```
-
-```sh [npm]
-npm create svelte@latest my-sveltekit-app
-cd my-sveltekit-app
-npm install
-```
-
-```sh [pnpm]
-pnpm create svelte@latest my-sveltekit-app
-cd my-sveltekit-app
-pnpm install
-```
-
-```sh [yarn]
-yarn create svelte@latest my-sveltekit-app
-cd my-sveltekit-app
-yarn install
-```
-
-:::
-
-> [!NOTE]
-> See Svelte's [Introduction](https://svelte.dev/docs/kit/introduction) guide for more details on SvelteKit applications.
+<Aside type="note">
+See Svelte's [Introduction](https://svelte.dev/docs/kit/introduction) guide for more details on SvelteKit applications.
+</Aside>
 
 ## Install Cloudflare Adapter and Dependencies
 
 Install the required dependencies:
 
-::: code-group
-
-```sh [bun]
-bun add @sveltejs/adapter-cloudflare alchemy cloudflare
-bun add -D @cloudflare/workers-types
-```
-
-```sh [npm]
-npm install @sveltejs/adapter-cloudflare alchemy cloudflare
-npm install --save-dev @cloudflare/workers-types
-```
-
-```sh [pnpm]
-pnpm add @sveltejs/adapter-cloudflare alchemy cloudflare
-pnpm add -D @cloudflare/workers-types
-```
-
-```sh [yarn]
-yarn add @sveltejs/adapter-cloudflare alchemy cloudflare
-yarn add -D @cloudflare/workers-types
-```
-
-:::
+<CommandGroup
+  bun={["bun add @sveltejs/adapter-cloudflare alchemy cloudflare", "bun add -D @cloudflare/workers-types"]}
+  npm={["npm install @sveltejs/adapter-cloudflare alchemy cloudflare", "npm install --save-dev @cloudflare/workers-types"]}
+  pnpm={["pnpm add @sveltejs/adapter-cloudflare alchemy cloudflare", "pnpm add -D @cloudflare/workers-types"]}
+  yarn={["yarn add @sveltejs/adapter-cloudflare alchemy cloudflare", "yarn add -D @cloudflare/workers-types"]}
+/>
 
 ## Configure SvelteKit for Cloudflare
 
@@ -201,8 +167,9 @@ declare global {
 export {};
 ```
 
-> [!NOTE]
-> The `src/env.ts` approach provides better type safety since `.ts` files are type-checked, while `.d.ts` files are not. It also automatically derives types from your Alchemy configuration. The traditional `app.d.ts` approach is simpler but requires manual type definitions. Both approaches work with SvelteKit's adapter system by extending the `App.Platform` interface.
+<Aside type="note">
+The `src/env.ts` approach provides better type safety since `.ts` files are type-checked, while `.d.ts` files are not. It also automatically derives types from your Alchemy configuration. The traditional `app.d.ts` approach is simpler but requires manual type definitions. Both approaches work with SvelteKit's adapter system by extending the `App.Platform` interface.
+</Aside>
 
 ## Using Cloudflare Bindings
 
@@ -236,52 +203,27 @@ export const load = async ({ platform }) => {
 
 Before you can deploy, you need to authenticate by running `wrangler login`.
 
-::: code-group
+<CommandGroup
+  bun={["bun wrangler login"]}
+  npm={["npx wrangler login"]}
+  pnpm={["pnpm wrangler login"]}
+  yarn={["yarn wrangler login"]}
+/>
 
-```sh [bun]
-bun wrangler login
-```
-
-```sh [npm]
-npx wrangler login
-```
-
-```sh [pnpm]
-pnpm wrangler login
-```
-
-```sh [yarn]
-yarn wrangler login
-```
-
-:::
-
-> [!TIP]
-> Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+<Aside type="tip">
+Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+</Aside>
 
 ## Deploy
 
 Now we can run and deploy our Alchemy stack:
 
-::: code-group
-
-```sh [bun]
-bun ./alchemy.run
-```
-
-```sh [npm]
-npx tsx ./alchemy.run
-```
-
-```sh [pnpm]
-pnpm tsx ./alchemy.run
-```
-
-```sh [yarn]
-yarn tsx ./alchemy.run
-```
-
-:::
+<CommandGroup
+  bun={["bun ./alchemy.run"]}
+  npm={["npx tsx ./alchemy.run"]}
+  pnpm={["pnpm tsx ./alchemy.run"]}
+  yarn={["yarn tsx ./alchemy.run"]}
+/>
 
 It should output the URL of your deployed site:
 
@@ -295,25 +237,12 @@ It should output the URL of your deployed site:
 
 To run your application locally:
 
-::: code-group
-
-```sh [bun]
-bun run dev
-```
-
-```sh [npm]
-npm run dev
-```
-
-```sh [pnpm]
-pnpm run dev
-```
-
-```sh [yarn]
-yarn run dev
-```
-
-:::
+<CommandGroup
+  bun={["bun run dev"]}
+  npm={["npm run dev"]}
+  pnpm={["pnpm run dev"]}
+  yarn={["yarn run dev"]}
+/>
 
 ## Destroy
 

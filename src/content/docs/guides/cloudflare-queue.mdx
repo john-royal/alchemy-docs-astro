@@ -5,10 +5,14 @@ sidebar:
   order: 6
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../components/command-group.astro";
+
 This guide explains how to create and use Cloudflare Queues with your Worker applications.
 
-> [!TIP]
-> We assume you're familiar with Cloudflare Queues already. If not, read [Cloudflare Queues](https://developers.cloudflare.com/queues/) first.
+<Aside type="tip">
+We assume you're familiar with Cloudflare Queues already. If not, read [Cloudflare Queues](https://developers.cloudflare.com/queues/) first.
+</Aside>
 
 ## Create a Queue
 
@@ -110,8 +114,9 @@ export default {
 };
 ```
 
-> [!TIP]
-> Using `typeof queue.Batch` provides better type safety than generic types, as it directly references the typed queue you created.
+<Aside type="tip">
+Using `typeof queue.Batch` provides better type safety than generic types, as it directly references the typed queue you created.
+</Aside>
 
 ## Generate Wrangler Config
 

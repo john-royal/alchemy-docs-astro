@@ -3,6 +3,9 @@ title: What is Alchemy
 description: Alchemy is an embeddable, zero-dependency Infrastructure-as-Code library written in pure TypeScript that runs anywhere JavaScript runs. Learn how it differs from traditional IaC tools.
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../components/command-group.astro";
+
 
 Alchemy is an embeddable, zero-dependency, Infrastructure-as-Code (IaC) library written in pure TypeScript that runs anywhere that JavaScript runs - including the browser, serverless functions or even durable workflows.
 
@@ -111,8 +114,9 @@ State is stored as plain JSON files you can inspect, edit, and version control.
 }
 ```
 
-> [!NOTE]
-> You usually don't want to edit these files, but when things go wrong, having state that is easy to understand and change is useful.
+<Aside type="note">
+You usually don't want to edit these files, but when things go wrong, having state that is easy to understand and change is useful.
+</Aside>
 
 ## Pluggable State
 

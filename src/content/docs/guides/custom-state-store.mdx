@@ -5,6 +5,9 @@ sidebar:
   order: 7
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../components/command-group.astro";
+
 Alchemy's state management system is designed to be pluggable, allowing you to implement your own storage backends. This guide walks you through creating a custom state store implementation.
 
 > [!NOTE]  
@@ -69,8 +72,9 @@ const serializedData = await serialize(this.scope, value);
 const state = (await deserialize(this.scope, rawData)) as State;
 ```
 
-> [!IMPORTANT]
-> For detailed information on Alchemy's serialization system, see the [Serialization and Deserialization](../advanced/serde.md) guide.
+<Aside type="note">
+For detailed information on Alchemy's serialization system, see the [Serialization and Deserialization](../advanced/serde.md) guide.
+</Aside>
 
 ## Creating a Custom State Store
 

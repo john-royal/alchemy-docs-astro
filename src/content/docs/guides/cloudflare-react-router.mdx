@@ -5,34 +5,25 @@ sidebar:
   order: 2
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../components/command-group.astro";
+
 This guide demonstrates how to deploy a [React Router](https://reactrouter.com/) (formerly Remix.js) application to Cloudflare with Alchemy.
 
 ## Create a new React Router Project
 
 Start by creating new React Router project using the [Cloudflare template](https://developers.cloudflare.com/workers/frameworks/framework-guides/react-router/).
 
-> [!NOTE]
-> This template assumes you're using wrangler. We will adapt it to Alchemy (and learn some Alchemy concepts along the way).
+<Aside type="note">
+This template assumes you're using wrangler. We will adapt it to Alchemy (and learn some Alchemy concepts along the way).
+</Aside>
 
-::: code-group
-
-```sh [bun]
-bun create cloudflare@latest my-react-router-app --framework=react-router
-```
-
-```sh [npm]
-npm create cloudflare@latest -- my-react-router-app --framework=react-router
-```
-
-```sh [pnpm]
-pnpm create cloudflare@latest my-react-router-app --framework=react-router
-```
-
-```sh [yarn]
-yarn create cloudflare my-react-router-app --framework=react-router
-```
-
-:::
+<CommandGroup
+  bun={["bun create cloudflare@latest my-react-router-app --framework=react-router"]}
+  npm={["npm create cloudflare@latest -- my-react-router-app --framework=react-router"]}
+  pnpm={["pnpm create cloudflare@latest my-react-router-app --framework=react-router"]}
+  yarn={["yarn create cloudflare my-react-router-app --framework=react-router"]}
+/>
 
 ## Remove Unnecessary files
 
@@ -47,29 +38,12 @@ rm -rf worker-configuration.d.ts wrangler.jsonc
 
 Now install the alchemy and cloudflare dependencies.
 
-::: code-group
-
-```sh [bun]
-bun add alchemy cloudflare
-bun add -D @cloudflare/workers-types
-```
-
-```sh [npm]
-npm install alchemy cloudflare
-bun install --save-dev @cloudflare/workers-types
-```
-
-```sh [pnpm]
-pnpm add alchemy cloudflare
-pnpm add -D @cloudflare/workers-types
-```
-
-```sh [yarn]
-yarn add alchemy cloudflare
-yarn add -D @cloudflare/workers-types
-```
-
-:::
+<CommandGroup
+  bun={["bun add alchemy cloudflare", "bun add -D @cloudflare/workers-types"]}
+  npm={["npm install alchemy cloudflare", "bun install --save-dev @cloudflare/workers-types"]}
+  pnpm={["pnpm add alchemy cloudflare", "pnpm add -D @cloudflare/workers-types"]}
+  yarn={["yarn add alchemy cloudflare", "yarn add -D @cloudflare/workers-types"]}
+/>
 
 ## Create `alchemy.run.ts`
 
@@ -147,52 +121,27 @@ Then, update `tsconfig.json` to include `./workers/env.ts` and `@cloudflare/work
 
 Before you can deploy, you need to authenticate by running `wrangler login`.
 
-::: code-group
+<CommandGroup
+  bun={["bun wrangler login"]}
+  npm={["npx wrangler login"]}
+  pnpm={["pnpm wrangler login"]}
+  yarn={["yarn wrangler login"]}
+/>
 
-```sh [bun]
-bun wrangler login
-```
-
-```sh [npm]
-npx wrangler login
-```
-
-```sh [pnpm]
-pnpm wrangler login
-```
-
-```sh [yarn]
-yarn wrangler login
-```
-
-:::
-
-> [!TIP]
-> Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+<Aside type="tip">
+Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+</Aside>
 
 ## Deploy
 
 Now we can run and deploy our Alchemy stack:
 
-::: code-group
-
-```sh [bun]
-bun ./alchemy.run
-```
-
-```sh [npm]
-npx tsx ./alchemy.run
-```
-
-```sh [pnpm]
-pnpm tsx ./alchemy.run
-```
-
-```sh [yarn]
-yarn tsx ./alchemy.run
-```
-
-:::
+<CommandGroup
+  bun={["bun ./alchemy.run"]}
+  npm={["npx tsx ./alchemy.run"]}
+  pnpm={["pnpm tsx ./alchemy.run"]}
+  yarn={["yarn tsx ./alchemy.run"]}
+/>
 
 It will log out the URL of your new React Router website hosted on Cloudflare:
 

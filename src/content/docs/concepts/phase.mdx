@@ -5,6 +5,9 @@ sidebar:
   order: 2
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../components/command-group.astro";
+
 
 An Alchemy app can run in one of three phases:
 1. `"up"` - resources should be created, updated and deleted as necessary.
@@ -57,8 +60,8 @@ worker.url; // <- populated from `.alchemy/` state
 await app.finalize() // <- will not delete any orphaned resources
 ```
 
-> [!TIP]
-> You can write your own scripts that run commands and pass infrstructure properties as environment variables with a very simple node script.
+<Aside type="tip">
+You can write your own scripts that run commands and pass infrstructure properties as environment variables with a very simple node script.
 > 1. Set the `phase` to `"read"`, e.g. using an env variable:
 > ```ts
 > // ./alchemy.run.ts
@@ -83,3 +86,4 @@ await app.finalize() // <- will not delete any orphaned resources
 > ```sh
 > PHASE=read bun ./scripts/build.ts
 > ```
+</Aside>

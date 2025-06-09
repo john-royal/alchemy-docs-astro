@@ -5,61 +5,30 @@ sidebar:
   order: 4
 ---
 
+import { Aside } from "@astrojs/starlight/components";
+import CommandGroup from "../../../components/command-group.astro";
+
 This guide walks through deploying a full-stack Nuxt 3 application with a backend Pipeline to Cloudflare using Alchemy.
 
 ## Create a new Nuxt 3 Project
 
 Start by creating a new Nuxt 3 project:
 
-::: code-group
-
-```sh [bun]
-bun create nuxt-app
-cd my-nuxt-app
-bun install
-```
-
-```sh [npm]
-npm create nuxt-app
-cd my-nuxt-app
-npm install
-```
-
-```sh [pnpm]
-pnpm create nuxt-app
-cd my-nuxt-app
-pnpm install
-```
-
-```sh [yarn]
-yarn create nuxt-app
-cd my-nuxt-app
-yarn install
-```
-
-:::
+<CommandGroup
+  bun={["bun create nuxt-app", "cd my-nuxt-app", "bun install"]}
+  npm={["npm create nuxt-app", "cd my-nuxt-app", "npm install"]}
+  pnpm={["pnpm create nuxt-app", "cd my-nuxt-app", "pnpm install"]}
+  yarn={["yarn create nuxt-app", "cd my-nuxt-app", "yarn install"]}
+/>
 
 Install alchemy and Cloudflare:
 
-::: code-group
-
-```sh [bun]
-bun add alchemy cloudflare
-```
-
-```sh [npm]
-npm install alchemy cloudflare
-```
-
-```sh [pnpm]
-pnpm add alchemy cloudflare
-```
-
-```sh [yarn]
-yarn add alchemy cloudflare
-```
-
-:::
+<CommandGroup
+  bun={["bun add alchemy cloudflare"]}
+  npm={["npm install alchemy cloudflare"]}
+  pnpm={["pnpm add alchemy cloudflare"]}
+  yarn={["yarn add alchemy cloudflare"]}
+/>
 
 ## Configure Nuxt for Cloudflare
 
@@ -135,8 +104,9 @@ const pipeline = await Pipeline("pipeline", {
 });
 ```
 
-> [!CAUTION]
-> Set `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, and `ALCHEMY_PASS` environment variables before deployment.
+<Aside type="caution">
+Set `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, and `ALCHEMY_PASS` environment variables before deployment.
+</Aside>
 
 ### 4. Configure Nuxt website with bindings
 
@@ -287,47 +257,21 @@ button {
 
 Login to Cloudflare:
 
-::: code-group
-
-```sh [bun]
-bun wrangler login
-```
-
-```sh [npm]
-npx wrangler login
-```
-
-```sh [pnpm]
-pnpm wrangler login
-```
-
-```sh [yarn]
-yarn wrangler login
-```
-
-:::
+<CommandGroup
+  bun={["bun wrangler login"]}
+  npm={["npx wrangler login"]}
+  pnpm={["pnpm wrangler login"]}
+  yarn={["yarn wrangler login"]}
+/>
 
 Run your Alchemy script to deploy the application:
 
-::: code-group
-
-```sh [bun]
-bun ./alchemy.run
-```
-
-```sh [npm]
-npx tsx ./alchemy.run
-```
-
-```sh [pnpm]
-pnpm tsx ./alchemy.run
-```
-
-```sh [yarn]
-yarn tsx ./alchemy.run
-```
-
-:::
+<CommandGroup
+  bun={["bun ./alchemy.run"]}
+  npm={["npx tsx ./alchemy.run"]}
+  pnpm={["pnpm tsx ./alchemy.run"]}
+  yarn={["yarn tsx ./alchemy.run"]}
+/>
 
 It should output the URL of your deployed site:
 
@@ -343,25 +287,12 @@ Click the URL to see your site. Test sending data via the form; it should appear
 
 To run your application locally, use the Nuxt development server:
 
-::: code-group
-
-```sh [bun]
-bun run dev
-```
-
-```sh [npm]
-npm run dev
-```
-
-```sh [pnpm]
-pnpm run dev
-```
-
-```sh [yarn]
-yarn run dev
-```
-
-:::
+<CommandGroup
+  bun={["bun run dev"]}
+  npm={["npm run dev"]}
+  pnpm={["pnpm run dev"]}
+  yarn={["yarn run dev"]}
+/>
 
 This will start a local development server:
 
@@ -376,22 +307,9 @@ Nuxt 3.9.0 with Nitro 2.8.1
 
 When you're finished experimenting, you can tear down the application:
 
-::: code-group
-
-```sh [bun]
-bun ./alchemy.run --destroy
-```
-
-```sh [npm]
-npx tsx ./alchemy.run --destroy
-```
-
-```sh [pnpm]
-pnpm tsx ./alchemy.run --destroy
-```
-
-```sh [yarn]
-yarn tsx ./alchemy.run --destroy
-```
-
-:::
+<CommandGroup
+  bun={["bun ./alchemy.run --destroy"]}
+  npm={["npx tsx ./alchemy.run --destroy"]}
+  pnpm={["pnpm tsx ./alchemy.run --destroy"]}
+  yarn={["yarn tsx ./alchemy.run --destroy"]}
+/>

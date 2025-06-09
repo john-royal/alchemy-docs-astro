@@ -4,6 +4,12 @@ import starlight from "@astrojs/starlight";
 
 // https://astro.build/config
 export default defineConfig({
+  redirects: {
+    "/guides/[page].html": "/guides/[page]",
+    "/providers/[provider]/[page].html": "/providers/[provider]/[page]",
+    "/providers/[provider]/[section]/[page].html":
+      "/providers/[provider]/[section]/[page]",
+  },
   integrations: [
     starlight({
       title: "Alchemy",
