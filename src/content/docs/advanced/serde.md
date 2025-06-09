@@ -113,7 +113,7 @@ The `serialize` function accepts options to control the serialization process:
 ```typescript
 // Skip encryption (for debugging or special cases)
 const serializedData = await serialize(scope, value, {
-  encrypt: false
+  encrypt: false,
 });
 ```
 
@@ -138,6 +138,6 @@ Some types are excluded or skipped during serialization:
 
 ## Related Concepts
 
-- [State Management](../concepts/state.md)
-- [Secrets Management](../concepts/secret.md)
-- [Custom State Stores](../guides/custom-state-store.md) 
+- [State Management](../concepts/state)
+- [Secrets Management](../concepts/secret)
+- [Custom State Stores](../guides/custom-state-store)

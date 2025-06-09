@@ -9,7 +9,8 @@ import CommandGroup from "../../components/command-group.astro";
 This guide will deploy a Cloudflare Worker and bind resources to it with Alchemy.
 
 <Aside type="tip">
-Read [What is Alchemy](./what-is-alchemy.md) to get an overview of Alchemy and how it's different than traditional IaC
+  Read [What is Alchemy](./what-is-alchemy) to get an overview of Alchemy and
+  how it's different than traditional IaC
 </Aside>
 
 ## Prerequisites
@@ -30,9 +31,24 @@ Start by creating an empty TypeScript project:
 
 <CommandGroup
   bun={["mkdir my-alchemy-app", "cd my-alchemy-app", "bun init -y"]}
-  npm={["mkdir my-alchemy-app", "cd my-alchemy-app", "npm init -y", "npm install -D typescript @types/node tsx"]}
-  pnpm={["mkdir my-alchemy-app", "cd my-alchemy-app", "pnpm init", "pnpm add -D typescript @types/node tsx"]}
-  yarn={["mkdir my-alchemy-app", "cd my-alchemy-app", "yarn init -y", "yarn add -D typescript @types/node tsx"]}
+  npm={[
+    "mkdir my-alchemy-app",
+    "cd my-alchemy-app",
+    "npm init -y",
+    "npm install -D typescript @types/node tsx",
+  ]}
+  pnpm={[
+    "mkdir my-alchemy-app",
+    "cd my-alchemy-app",
+    "pnpm init",
+    "pnpm add -D typescript @types/node tsx",
+  ]}
+  yarn={[
+    "mkdir my-alchemy-app",
+    "cd my-alchemy-app",
+    "yarn init -y",
+    "yarn add -D typescript @types/node tsx",
+  ]}
 />
 
 ## Install Dependencies
@@ -57,7 +73,8 @@ wrangler login
 This will open your browser to authenticate with your Cloudflare account.
 
 <Aside type="tip">
-Alchemy automatically uses your wrangler OAuth token. See the [Cloudflare Auth](./guides/cloudflare-auth.md) guide for alternative authentication methods.
+  Alchemy automatically uses your wrangler OAuth token. See the [Cloudflare
+  Auth](./guides/cloudflare-auth) guide for alternative authentication methods.
 </Aside>
 
 ## Create Your First Alchemy App
@@ -65,7 +82,8 @@ Alchemy automatically uses your wrangler OAuth token. See the [Cloudflare Auth](
 Create a file named `alchemy.run.ts` in your project directory:
 
 <Aside type="tip">
-`alchemy.run.ts` is just a convention - you can run Alchemy in any script or JavaScript environment.
+  `alchemy.run.ts` is just a convention - you can run Alchemy in any script or
+  JavaScript environment.
 </Aside>
 
 ### Step 1: Initialize the Alchemy Application Scope
@@ -81,7 +99,7 @@ const app = await alchemy("my-first-app", {
 ```
 
 <Aside type="note">
-Learn more about Alchemy scopes in [Concepts: Scope](./concepts/scope.md)
+  Learn more about Alchemy scopes in [Concepts: Scope](./concepts/scope)
 </Aside>
 
 ### Step 2: Create a Cloudflare Worker
@@ -99,7 +117,8 @@ console.log(`Worker deployed at: ${worker.url}`);
 ```
 
 <Aside type="note">
-Learn more about Alchemy resources in [Concepts: Resource](./concepts/resource.md)
+  Learn more about Alchemy resources in [Concepts:
+  Resource](./concepts/resource)
 </Aside>
 
 ### Step 3: Finalize the Application
@@ -112,7 +131,8 @@ await app.finalize();
 This is necessary for deleting what are called "orphaned resources" when resources are removed.
 
 <Aside type="note">
-Learn more about finalization and destroying resources in [Concepts: Destroy](./concepts/destroy.md)
+  Learn more about finalization and destroying resources in [Concepts:
+  Destroy](./concepts/destroy)
 </Aside>
 
 ### Step 4: Create the Worker Script
@@ -152,7 +172,8 @@ Worker deployed at: https://hello-worker.your-subdomain.workers.dev
 Visit the URL to see your worker in action!
 
 <Aside type="tip">
-If you're familiar with other IaC tools, this should feel similar to `terraform apply`, `pulumi up`, `cdk deploy` or `sst deploy`
+  If you're familiar with other IaC tools, this should feel similar to
+  `terraform apply`, `pulumi up`, `cdk deploy` or `sst deploy`
 </Aside>
 
 ## Add Bindings
@@ -205,7 +226,9 @@ export default {
 ```
 
 <Aside type="note">
-The `typeof worker.Env` gives you full type safety by inferring types directly from your infrastructure definition in `alchemy.run.ts`. No code generation required!
+  The `typeof worker.Env` gives you full type safety by inferring types directly
+  from your infrastructure definition in `alchemy.run.ts`. No code generation
+  required!
 </Aside>
 
 ## Alternative: Using Cloudflare Workers Environment
@@ -264,7 +287,10 @@ export default {
 ```
 
 <Aside type="note">
-Both approaches give you the same type safety. The `typeof worker.Env` approach is simpler to start with, while the `cloudflare:workers` import provides a more integrated development experience with the Cloudflare Workers runtime.
+  Both approaches give you the same type safety. The `typeof worker.Env`
+  approach is simpler to start with, while the `cloudflare:workers` import
+  provides a more integrated development experience with the Cloudflare Workers
+  runtime.
 </Aside>
 
 ## Understanding State
@@ -281,7 +307,7 @@ After running your app, Alchemy creates a `.alchemy` directory to store state:
 State files help Alchemy determine whether to create, update, delete, or skip resources on subsequent runs.
 
 <Aside type="note">
-Learn more about Alchemy state in [Concepts: State](./concepts/state.md)
+  Learn more about Alchemy state in [Concepts: State](./concepts/state)
 </Aside>
 
 ## Generate wrangler.json for Local Development
@@ -345,4 +371,4 @@ You've successfully deployed your first Cloudflare Worker with Alchemy! Here are
 
 - [Deploy a ViteJS site to Cloudflare](./guides/cloudflare-vitejs) - Build full-stack applications
 - [Learn about Cloudflare Workers](./guides/cloudflare-worker) - Advanced worker features
-- [Build your own Custom Resource](./guides/custom-resources.md) - Extend Alchemy
+- [Build your own Custom Resource](./guides/custom-resources) - Extend Alchemy

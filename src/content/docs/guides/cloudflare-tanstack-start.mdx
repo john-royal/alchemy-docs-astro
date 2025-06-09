@@ -15,14 +15,32 @@ This guide walks through how to deploy a TanStack Start application to Cloudflar
 Start by creating a TanStack Start project:
 
 <CommandGroup
-  bun={["bunx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic", "cd start-basic", "bun install"]}
-  npm={["npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic", "cd start-basic", "npm install"]}
-  pnpm={["pnpm dlx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic", "cd start-basic", "pnpm install"]}
-  yarn={["yarn dlx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic", "cd start-basic", "yarn install"]}
+  bun={[
+    "bunx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic",
+    "cd start-basic",
+    "bun install",
+  ]}
+  npm={[
+    "npx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic",
+    "cd start-basic",
+    "npm install",
+  ]}
+  pnpm={[
+    "pnpm dlx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic",
+    "cd start-basic",
+    "pnpm install",
+  ]}
+  yarn={[
+    "yarn dlx gitpick TanStack/router/tree/main/examples/react/start-basic start-basic",
+    "cd start-basic",
+    "yarn install",
+  ]}
 />
 
 <Aside type="note">
-See TanStack's [Quick Start](https://tanstack.com/start/latest/docs/framework/react/quick-start) guide for more details on TanStack Start applications.
+  See TanStack's [Quick
+  Start](https://tanstack.com/start/latest/docs/framework/react/quick-start)
+  guide for more details on TanStack Start applications.
 </Aside>
 
 ## Install Alchemy and Cloudflare
@@ -116,11 +134,12 @@ export default defineConfig({
 
 <Aside type="caution">
 Make sure to configure this shim or else local development won't work for server functions or middleware.
->
-> ```ts
-> // Provides a polyfill for Cloudflare Workers env during development
-> cloudflareWorkersDevEnvironmentShim(),
-> ```
+
+```ts
+// Provides a polyfill for Cloudflare Workers env during development
+cloudflareWorkersDevEnvironmentShim(),
+```
+
 </Aside>
 
 ## Modify DEPLOY_URL

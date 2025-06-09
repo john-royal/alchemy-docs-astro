@@ -10,8 +10,11 @@ import CommandGroup from "../../../components/command-group.astro";
 
 Alchemy's state management system is designed to be pluggable, allowing you to implement your own storage backends. This guide walks you through creating a custom state store implementation.
 
-> [!NOTE]  
-> This guide builds on the concepts from [State Management](../concepts/state.md). Familiarize yourself with how Alchemy handles state before creating a custom state store.
+<Aside type="note">
+  This guide builds on the concepts from [State Management](../concepts/state).
+  Familiarize yourself with how Alchemy handles state before creating a custom
+  state store.
+</Aside>
 
 ## Understanding the StateStore Interface
 
@@ -73,7 +76,8 @@ const state = (await deserialize(this.scope, rawData)) as State;
 ```
 
 <Aside type="note">
-For detailed information on Alchemy's serialization system, see the [Serialization and Deserialization](../advanced/serde.md) guide.
+  For detailed information on Alchemy's serialization system, see the
+  [Serialization and Deserialization](../advanced/serde) guide.
 </Aside>
 
 ## Creating a Custom State Store

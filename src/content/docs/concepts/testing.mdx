@@ -8,8 +8,7 @@ sidebar:
 import { Aside } from "@astrojs/starlight/components";
 import CommandGroup from "../../../components/command-group.astro";
 
-
-Alchemy resources are easy to test since they're just functions, but Alchemy also offers a simple `alchemy.test` utility to help isolate your [Scopes](../concepts/scope.md) for each test suite.
+Alchemy resources are easy to test since they're just functions, but Alchemy also offers a simple `alchemy.test` utility to help isolate your [Scopes](../concepts/scope) for each test suite.
 
 ## Test Setup
 
@@ -31,7 +30,7 @@ Create a `test` function at the top of your test suite:
 ```typescript
 // Create test scope using filename
 const test = alchemy.test(import.meta, {
-  prefix: BRANCH_PREFIX
+  prefix: BRANCH_PREFIX,
 });
 ```
 
@@ -50,6 +49,7 @@ test("create, update, and delete database", async (scope) => {
 Note how our test is passed a `scope` value - we'll use that at the end to clean up our resources.
 
 Inside our test, we can simple create and update our resources, make assertions, etc.:
+
 ```ts
 // Create resource
 let database = await Database(testId, {
@@ -74,12 +74,12 @@ try {
 } finally {
   // delete all resources
   await destroy(scope);
-  
+
   // Verify resource was deleted if you want to
 }
 ```
 
 <Aside type="tip">
-It's recommended to use a `try-finally` so that you can assert the resource was actually deleted. 
+  It's recommended to use a `try-finally` so that you can assert the resource
+  was actually deleted.
 </Aside>
-

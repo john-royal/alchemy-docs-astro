@@ -15,13 +15,20 @@ This guide demonstrates how to deploy a [React Router](https://reactrouter.com/)
 Start by creating new React Router project using the [Cloudflare template](https://developers.cloudflare.com/workers/frameworks/framework-guides/react-router/).
 
 <Aside type="note">
-This template assumes you're using wrangler. We will adapt it to Alchemy (and learn some Alchemy concepts along the way).
+  This template assumes you're using wrangler. We will adapt it to Alchemy (and
+  learn some Alchemy concepts along the way).
 </Aside>
 
 <CommandGroup
-  bun={["bun create cloudflare@latest my-react-router-app --framework=react-router"]}
-  npm={["npm create cloudflare@latest -- my-react-router-app --framework=react-router"]}
-  pnpm={["pnpm create cloudflare@latest my-react-router-app --framework=react-router"]}
+  bun={[
+    "bun create cloudflare@latest my-react-router-app --framework=react-router",
+  ]}
+  npm={[
+    "npm create cloudflare@latest -- my-react-router-app --framework=react-router",
+  ]}
+  pnpm={[
+    "pnpm create cloudflare@latest my-react-router-app --framework=react-router",
+  ]}
   yarn={["yarn create cloudflare my-react-router-app --framework=react-router"]}
 />
 
@@ -40,9 +47,18 @@ Now install the alchemy and cloudflare dependencies.
 
 <CommandGroup
   bun={["bun add alchemy cloudflare", "bun add -D @cloudflare/workers-types"]}
-  npm={["npm install alchemy cloudflare", "bun install --save-dev @cloudflare/workers-types"]}
-  pnpm={["pnpm add alchemy cloudflare", "pnpm add -D @cloudflare/workers-types"]}
-  yarn={["yarn add alchemy cloudflare", "yarn add -D @cloudflare/workers-types"]}
+  npm={[
+    "npm install alchemy cloudflare",
+    "bun install --save-dev @cloudflare/workers-types",
+  ]}
+  pnpm={[
+    "pnpm add alchemy cloudflare",
+    "pnpm add -D @cloudflare/workers-types",
+  ]}
+  yarn={[
+    "yarn add alchemy cloudflare",
+    "yarn add -D @cloudflare/workers-types",
+  ]}
 />
 
 ## Create `alchemy.run.ts`
@@ -129,7 +145,9 @@ Before you can deploy, you need to authenticate by running `wrangler login`.
 />
 
 <Aside type="tip">
-Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+  Alchemy will by default try and use your wrangler OAuth token and Refresh
+  Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth) for
+  other methods.
 </Aside>
 
 ## Deploy

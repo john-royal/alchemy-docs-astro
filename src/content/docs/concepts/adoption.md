@@ -5,7 +5,6 @@ sidebar:
   order: 10
 ---
 
-
 When creating a resource, Alchemy will fail if a resource with the same name already exists. Resource adoption allows you to opt in to using the pre-existing resource instead.
 
 ## Basic Usage
@@ -13,13 +12,13 @@ When creating a resource, Alchemy will fail if a resource with the same name alr
 ```typescript
 // Without adoption - fails if bucket already exists
 const bucket = await R2Bucket("my-bucket", {
-  name: "existing-bucket"
+  name: "existing-bucket",
 });
 
 // With adoption - uses existing bucket if it exists
 const bucket = await R2Bucket("my-bucket", {
   name: "existing-bucket",
-  adopt: true
+  adopt: true,
 });
 ```
 
@@ -48,5 +47,5 @@ if (this.phase === "create") {
 
 ## Related Concepts
 
-- **[Resource](./resource.md)** - Understanding Alchemy's resource model
-- **[State](./state.md)** - How Alchemy tracks resource state
+- **[Resource](./resource)** - Understanding Alchemy's resource model
+- **[State](./state)** - How Alchemy tracks resource state

@@ -87,7 +87,7 @@ export class Counter {
 }
 ```
 
-[Learn more about Durable Objects →](./cloudflare-durable-objects.md)
+[Learn more about Durable Objects →](./cloudflare-durable-objects)
 
 ## Workflows
 
@@ -122,7 +122,7 @@ export class OrderProcessor {
 }
 ```
 
-[Learn more about Workflows →](./cloudflare-workflows.md)
+[Learn more about Workflows →](./cloudflare-workflows)
 
 ## Bindings
 
@@ -165,7 +165,7 @@ export default {
 };
 ```
 
-[Learn more about Bindings →](../concepts/bindings.md)
+[Learn more about Bindings →](../concepts/bindings)
 
 ## Type Safety
 

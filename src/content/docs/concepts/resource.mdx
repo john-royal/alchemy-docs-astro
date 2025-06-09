@@ -8,22 +8,22 @@ sidebar:
 import { Aside } from "@astrojs/starlight/components";
 import CommandGroup from "../../../components/command-group.astro";
 
-
 Resources are the core building blocks of Alchemy. Each resource represents a piece of infrastructure or configuration that can be created, updated, and deleted automatically.
 
 ## What is a Resource?
 
 A Resource is simply a memoized async function that implemented a lifecycle handler for three phases:
+
 1. `create` - what to do when first creating the resource
 2. `update` - what to do when updating a resource
 3. `delete` - what to when deleting a resource
 
 ## Resource ID
 
-When creating a resource, you always pass an `id` that is unique within the Resource's [Scope](../concepts/scope.md).
+When creating a resource, you always pass an `id` that is unique within the Resource's [Scope](../concepts/scope).
 
 ```ts
-await MyResource("id")
+await MyResource("id");
 ```
 
 This ID is what Alchemy uses to track the state of the resource and trigger the appropriate create/update/delete phase.
@@ -64,7 +64,11 @@ Each Resource exports a "Provider" function with a globally unique name and an i
 ```typescript
 export const Database = Resource(
   "neon::Database",
-  async function(this: Context<Database>, id: string, props: DatabaseProps): Promise<Database> {
+  async function (
+    this: Context<Database>,
+    id: string,
+    props: DatabaseProps
+  ): Promise<Database> {
     if (this.phase === "delete") {
       // Delete resource logic
       // ...
@@ -72,18 +76,23 @@ export const Database = Resource(
     } else if (this.phase === "update") {
       // Update resource logic
       // ...
-      return this({/* updated resource */});
+      return this({
+        /* updated resource */
+      });
     } else {
       // Create resource logic
       // ...
-      return this({/* new resource */});
+      return this({
+        /* new resource */
+      });
     }
   }
 );
 ```
 
 <Aside type="tip">
-By Convention, the name of this exported `const` should match the name of your Resource's interface.
+  By Convention, the name of this exported `const` should match the name of your
+  Resource's interface.
 </Aside>
 
 Let's break this down a bit futher, since it may seem confusing at first.
@@ -93,10 +102,10 @@ Let's break this down a bit futher, since it may seem confusing at first.
 Each Resource has a globally unique name (aka. fully qualified name), e.g `"neon:Database"`:
 
 ```ts
-export const Database = Resource("neon::Database"),
+export const Database = Resource("neon::Database");
 ```
 
-Alchemy and uses this FQN to delete orphaned resources (stored in your [State](../concepts/state.md) files) by looking up the corresponding "provider".
+Alchemy and uses this FQN to delete orphaned resources (stored in your [State](../concepts/state) files) by looking up the corresponding "provider".
 
 ## Lifecycle Function
 
@@ -105,9 +114,9 @@ The Resource's lifecycle handler is defined using an `async function` declaratio
 ```ts
 async function(
   // the resource's state/context is bound to `this`
-  this: Context<Database>, 
+  this: Context<Database>,
   // the id of the resource (unique within a SCope)
-  id: string, 
+  id: string,
   // the input properties
   props: DatabaseProps
 ): Promise<Database>
@@ -129,11 +138,15 @@ if (this.phase === "delete") {
 } else if (this.phase === "update") {
   // Update resource logic
   // ...
-  return this({/* updated properties */});
+  return this({
+    /* updated properties */
+  });
 } else {
   // Create resource logic
   // ...
-  return this({/* initial properties */});
+  return this({
+    /* initial properties */
+  });
 }
 ```
 
@@ -142,7 +155,8 @@ if (this.phase === "delete") {
 When a resource is being deleted, you must return `this.destroy()` to signal that the resource deletion process is complete.
 
 <Aside type="tip">
-This also enables type inference since `this.destroy()` returns `never`, so the type of the resource can be inferred from the return type of the function.
+  This also enables type inference since `this.destroy()` returns `never`, so
+  the type of the resource can be inferred from the return type of the function.
 </Aside>
 
 ## `this({..})`
@@ -150,7 +164,9 @@ This also enables type inference since `this.destroy()` returns `never`, so the 
 To construct the resource (including your properites and Alchemy's intrinsic properties), call `this(props)` with your output properties:
 
 ```ts
-return this({/* updated properties */});
+return this({
+  /* updated properties */
+});
 ```
 
 What's going on here? `this` is a function? Huh?
@@ -158,17 +174,24 @@ What's going on here? `this` is a function? Huh?
 Alchemy resources are implemented with pure functions, but are designed to emulate classes (except with an async constructor that implements a CRUD lifecycle handler).
 
 `this` is analagous to `super` in a standard class:
+
 ```ts
-return super({/* updated properties */});
+return super({
+  /* updated properties */
+});
 ```
 
 <Aside type="tip">
 If this syntax freaks you out too much, it is also aliased as `this.create`:
-> ```ts
-> return this.create({/* updated properties */});
-> ```
+
+```ts
+return this.create({
+  /* updated properties */
+});
+```
+
 </Aside>
 
 ## Testing
 
-See the [Testing](./testing.md) documentation for a comprehensive walkthrough on how to test your own resources.
+See the [Testing](./testing) documentation for a comprehensive walkthrough on how to test your own resources.

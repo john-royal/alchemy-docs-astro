@@ -5,7 +5,6 @@ sidebar:
   order: 2
 ---
 
-
 Scopes in Alchemy are hierarchical containers that organize resources and other scopes, similar to a file system.
 
 ```typescript
@@ -32,6 +31,7 @@ const file = await File("config", { path: "./config.json", content: "{}" });
 ```
 
 State directory structure:
+
 ```
 .alchemy/
   my-app/  # Application scope
@@ -46,11 +46,13 @@ A scope directly under the application scope for separating environments:
 ```typescript
 // Create app with explicit stage
 const app = await alchemy("my-app", {
-  stage: "prod"
+  stage: "prod",
 });
 
 // Resource in prod stage
-const database = await Database("main", { /* props */ });
+const database = await Database("main", {
+  /* props */
+});
 ```
 
 ```
@@ -65,20 +67,17 @@ const database = await Database("main", { /* props */ });
 Each resource gets its own scope for managing child resources:
 
 ```typescript
-export const WebApp = Resource(
-  "my::WebApp",
-  async function (this, id, props) {
-    // Child resources automatically scoped to this WebApp
-    const database = await Database("db", {});
-    const apiGateway = await ApiGateway("api", {});
-    
-    return this({
-      id,
-      url: apiGateway.url,
-      dbConnectionString: database.connectionString
-    });
-  }
-);
+export const WebApp = Resource("my::WebApp", async function (this, id, props) {
+  // Child resources automatically scoped to this WebApp
+  const database = await Database("db", {});
+  const apiGateway = await ApiGateway("api", {});
+
+  return this({
+    id,
+    url: apiGateway.url,
+    dbConnectionString: database.connectionString,
+  });
+});
 
 // Usage
 const app = await WebApp("my-app", {});
@@ -135,7 +134,7 @@ await Bucket("assets", {});
 await app.finalize(); // Manual finalization
 ```
 
-Application scopes need manual finalization, but nested scopes finalize automatically when their execution completes. 
+Application scopes need manual finalization, but nested scopes finalize automatically when their execution completes.
 
 ## Test Scope
 
@@ -147,7 +146,7 @@ import "../../src/test/bun";
 
 // Create test scope from filename
 const test = alchemy.test(import.meta, {
-  prefix: BRANCH_PREFIX
+  prefix: BRANCH_PREFIX,
 });
 
 // Each test gets an isolated sub-scope
@@ -174,10 +173,10 @@ describe("Worker Resource", () => {
       script: "// Worker code",
       format: "esm",
     });
-    
+
     expect(worker.id).toBeTruthy();
   });
 });
 ```
 
-For more details on testing with Alchemy, see [Testing in Alchemy](./testing.md).
+For more details on testing with Alchemy, see [Testing in Alchemy](./testing).

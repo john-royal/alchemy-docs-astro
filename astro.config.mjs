@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLlmsTxt from "starlight-llms-txt";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -13,6 +14,7 @@ export default defineConfig({
       "/providers/[provider]/[section]/[page]",
   },
   integrations: [
+    sitemap(),
     starlight({
       title: "Alchemy",
       social: [
@@ -32,6 +34,9 @@ export default defineConfig({
           href: "https://discord.gg/jwKw8dBJdN",
         },
       ],
+      editLink: {
+        baseUrl: "https://github.com/sam-goodwin/alchemy/edit/main/alchemy-web",
+      },
       sidebar: [
         {
           label: "What is Alchemy?",

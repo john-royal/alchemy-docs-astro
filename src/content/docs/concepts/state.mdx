@@ -8,7 +8,6 @@ sidebar:
 import { Aside } from "@astrojs/starlight/components";
 import CommandGroup from "../../../components/command-group.astro";
 
-
 Alchemy uses a transparent and pluggable state management system to track resource lifecycles and enable idempotent operations. It's designed to be simple, with multiple backend options ranging from local files to cloud storage.
 
 ## What is State in Alchemy?
@@ -89,9 +88,10 @@ Perhaps you want to change the location of the `.alchemy` directory in a monorep
 
 ```typescript
 const app = await alchemy("my-app", {
-  stateStore: (scope) => new FileSystemStateStore(scope, {
-    rootDir: path.resolve(import.meta.dir, "..", ".alchemy")
-  })
+  stateStore: (scope) =>
+    new FileSystemStateStore(scope, {
+      rootDir: path.resolve(import.meta.dir, "..", ".alchemy"),
+    }),
 });
 ```
 
@@ -104,16 +104,18 @@ Alchemy supports multiple state storage backends. You can use the default file s
 const app = await alchemy("my-app", {
   stage: "prod",
   phase: process.argv.includes("--destroy") ? "destroy" : "up",
-  stateStore: (scope) => new R2RestStateStore(scope, {
-    apiKey: alchemy.secret(process.env.CLOUDFLARE_API_KEY),
-    email: process.env.CLOUDFLARE_EMAIL,
-    bucketName: process.env.CLOUDFLARE_BUCKET_NAME!,
-  })
+  stateStore: (scope) =>
+    new R2RestStateStore(scope, {
+      apiKey: alchemy.secret(process.env.CLOUDFLARE_API_KEY),
+      email: process.env.CLOUDFLARE_EMAIL,
+      bucketName: process.env.CLOUDFLARE_BUCKET_NAME!,
+    }),
 });
 ```
 
 <Aside type="tip">
-Learn how to implement your own state storage in [Custom State Stores Guide](../guides/custom-state-store.md)
+  Learn how to implement your own state storage in [Custom State Stores
+  Guide](../guides/custom-state-store)
 </Aside>
 
 ## Security and Secrets
@@ -124,7 +126,7 @@ State files may contain sensitive information. Alchemy provides a mechanism to e
 const apiKey = alchemy.secret(process.env.API_KEY);
 
 await ApiResource("my-api", {
-  key: apiKey
+  key: apiKey,
 });
 ```
 
@@ -141,9 +143,10 @@ Secrets are encrypted in state files:
 ```
 
 <Aside type="note">
-Always use `alchemy.secret()` for sensitive values to prevent them from being stored in plain text.
+  Always use `alchemy.secret()` for sensitive values to prevent them from being
+  stored in plain text.
 </Aside>
 
 <Aside type="note">
-Learn more about secrets management in [Concepts: Secrets](./secret.md)
+  Learn more about secrets management in [Concepts: Secrets](./secret)
 </Aside>

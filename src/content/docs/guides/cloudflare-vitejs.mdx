@@ -15,10 +15,18 @@ This guide demonstrates how to deploy a Vite.js React TypeScript application wit
 Start by creating a new Vite.js project:
 
 <CommandGroup
-  bun={["bun create cloudflare@latest my-react-app --framework=react --platform=workers --no-deploy"]}
-  npm={["npm create cloudflare@latest my-react-app -- --framework=react --platform=workers --no-deploy"]}
-  pnpm={["pnpm create cloudflare@latest my-react-app -- --framework=react --platform=workers --no-deploy"]}
-  yarn={["yarn create cloudflare@latest my-react-app -- --framework=react --platform=workers --no-deploy"]}
+  bun={[
+    "bun create cloudflare@latest my-react-app --framework=react --platform=workers --no-deploy",
+  ]}
+  npm={[
+    "npm create cloudflare@latest my-react-app -- --framework=react --platform=workers --no-deploy",
+  ]}
+  pnpm={[
+    "pnpm create cloudflare@latest my-react-app -- --framework=react --platform=workers --no-deploy",
+  ]}
+  yarn={[
+    "yarn create cloudflare@latest my-react-app -- --framework=react --platform=workers --no-deploy",
+  ]}
 />
 
 ## Install dependencies:
@@ -115,7 +123,9 @@ Before you can deploy, you need to authenticate by running `wrangler login`.
 />
 
 <Aside type="tip">
-Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+  Alchemy will by default try and use your wrangler OAuth token and Refresh
+  Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth) for
+  other methods.
 </Aside>
 
 ## Deploy Static Site
@@ -170,6 +180,7 @@ You may wish to add it to `.gitignore`:
 # .gitignore
 wrangler.jsonc
 ```
+
 </Aside>
 
 ## Tear Down

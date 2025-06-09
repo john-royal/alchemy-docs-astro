@@ -15,14 +15,31 @@ This guide walks through how to deploy a SvelteKit application to Cloudflare Wor
 Start by creating a new SvelteKit project:
 
 <CommandGroup
-  bun={["bun create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "bun install"]}
-  npm={["npm create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "npm install"]}
-  pnpm={["pnpm create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "pnpm install"]}
-  yarn={["yarn create svelte@latest my-sveltekit-app", "cd my-sveltekit-app", "yarn install"]}
+  bun={[
+    "bun create svelte@latest my-sveltekit-app",
+    "cd my-sveltekit-app",
+    "bun install",
+  ]}
+  npm={[
+    "npm create svelte@latest my-sveltekit-app",
+    "cd my-sveltekit-app",
+    "npm install",
+  ]}
+  pnpm={[
+    "pnpm create svelte@latest my-sveltekit-app",
+    "cd my-sveltekit-app",
+    "pnpm install",
+  ]}
+  yarn={[
+    "yarn create svelte@latest my-sveltekit-app",
+    "cd my-sveltekit-app",
+    "yarn install",
+  ]}
 />
 
 <Aside type="note">
-See Svelte's [Introduction](https://svelte.dev/docs/kit/introduction) guide for more details on SvelteKit applications.
+  See Svelte's [Introduction](https://svelte.dev/docs/kit/introduction) guide
+  for more details on SvelteKit applications.
 </Aside>
 
 ## Install Cloudflare Adapter and Dependencies
@@ -30,10 +47,22 @@ See Svelte's [Introduction](https://svelte.dev/docs/kit/introduction) guide for 
 Install the required dependencies:
 
 <CommandGroup
-  bun={["bun add @sveltejs/adapter-cloudflare alchemy cloudflare", "bun add -D @cloudflare/workers-types"]}
-  npm={["npm install @sveltejs/adapter-cloudflare alchemy cloudflare", "npm install --save-dev @cloudflare/workers-types"]}
-  pnpm={["pnpm add @sveltejs/adapter-cloudflare alchemy cloudflare", "pnpm add -D @cloudflare/workers-types"]}
-  yarn={["yarn add @sveltejs/adapter-cloudflare alchemy cloudflare", "yarn add -D @cloudflare/workers-types"]}
+  bun={[
+    "bun add @sveltejs/adapter-cloudflare alchemy cloudflare",
+    "bun add -D @cloudflare/workers-types",
+  ]}
+  npm={[
+    "npm install @sveltejs/adapter-cloudflare alchemy cloudflare",
+    "npm install --save-dev @cloudflare/workers-types",
+  ]}
+  pnpm={[
+    "pnpm add @sveltejs/adapter-cloudflare alchemy cloudflare",
+    "pnpm add -D @cloudflare/workers-types",
+  ]}
+  yarn={[
+    "yarn add @sveltejs/adapter-cloudflare alchemy cloudflare",
+    "yarn add -D @cloudflare/workers-types",
+  ]}
 />
 
 ## Configure SvelteKit for Cloudflare
@@ -168,7 +197,11 @@ export {};
 ```
 
 <Aside type="note">
-The `src/env.ts` approach provides better type safety since `.ts` files are type-checked, while `.d.ts` files are not. It also automatically derives types from your Alchemy configuration. The traditional `app.d.ts` approach is simpler but requires manual type definitions. Both approaches work with SvelteKit's adapter system by extending the `App.Platform` interface.
+  The `src/env.ts` approach provides better type safety since `.ts` files are
+  type-checked, while `.d.ts` files are not. It also automatically derives types
+  from your Alchemy configuration. The traditional `app.d.ts` approach is
+  simpler but requires manual type definitions. Both approaches work with
+  SvelteKit's adapter system by extending the `App.Platform` interface.
 </Aside>
 
 ## Using Cloudflare Bindings
@@ -211,7 +244,9 @@ Before you can deploy, you need to authenticate by running `wrangler login`.
 />
 
 <Aside type="tip">
-Alchemy will by default try and use your wrangler OAuth token and Refresh Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth.md) for other methods.
+  Alchemy will by default try and use your wrangler OAuth token and Refresh
+  Token to connect but see the [Cloudflare Auth](../guides/cloudflare-auth) for
+  other methods.
 </Aside>
 
 ## Deploy
