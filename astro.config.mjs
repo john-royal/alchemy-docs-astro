@@ -3,14 +3,10 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLlmsTxt from "starlight-llms-txt";
 import sitemap from "@astrojs/sitemap";
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://alchemy.run",
-  adapter: cloudflare({
-    imageService: "passthrough",
-  }),
   prefetch: !import.meta.env.DEV,
   integrations: [
     sitemap({

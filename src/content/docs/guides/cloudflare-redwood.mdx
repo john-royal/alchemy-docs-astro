@@ -6,7 +6,7 @@ sidebar:
 ---
 
 import { Aside } from "@astrojs/starlight/components";
-import CommandGroup from "../../../components/command-group.astro";
+import CommandGroup from "../../../components/CommandGroup.astro";
 
 This guide demonstrates how to deploy a Redwood application with Drizzle to Cloudflare using Alchemy.
 
@@ -15,10 +15,26 @@ This guide demonstrates how to deploy a Redwood application with Drizzle to Clou
 Start by creating a new Redwood project using the Drizzle template:
 
 <CommandGroup
-  bun={["bunx degit redwoodjs/example-drizzle my-cloudflare-app", "cd my-cloudflare-app", "bun install"]}
-  npm={["npx degit redwoodjs/example-drizzle my-cloudflare-app", "cd my-cloudflare-app", "npm install"]}
-  pnpm={["pnpm dlx degit redwoodjs/example-drizzle my-cloudflare-app", "cd my-cloudflare-app", "pnpm install"]}
-  yarn={["yarn dlx degit redwoodjs/example-drizzle my-cloudflare-app", "cd my-cloudflare-app", "yarn install"]}
+  bun={[
+    "bunx degit redwoodjs/example-drizzle my-cloudflare-app",
+    "cd my-cloudflare-app",
+    "bun install",
+  ]}
+  npm={[
+    "npx degit redwoodjs/example-drizzle my-cloudflare-app",
+    "cd my-cloudflare-app",
+    "npm install",
+  ]}
+  pnpm={[
+    "pnpm dlx degit redwoodjs/example-drizzle my-cloudflare-app",
+    "cd my-cloudflare-app",
+    "pnpm install",
+  ]}
+  yarn={[
+    "yarn dlx degit redwoodjs/example-drizzle my-cloudflare-app",
+    "cd my-cloudflare-app",
+    "yarn install",
+  ]}
 />
 
 Install `cloudflare` and `alchemy`:
@@ -50,7 +66,7 @@ await app.finalize(); // must be at end
 ```
 
 <Aside type="note">
-See the [Getting Started](../getting-started) guide if this is unfamiliar.
+  See the [Getting Started](../getting-started) guide if this is unfamiliar.
 </Aside>
 
 ## Create Redwood and Database
