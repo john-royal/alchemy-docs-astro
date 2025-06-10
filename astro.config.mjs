@@ -15,7 +15,7 @@ export default defineConfig({
     }),
     starlight({
       title: "Alchemy",
-      prerender: true,
+      prerender: false,
       social: [
         {
           icon: "github",
@@ -61,7 +61,6 @@ export default defineConfig({
           autogenerate: { directory: "providers", collapsed: true },
         },
       ],
-      plugins: [starlightLlmsTxt()],
     }),
   ],
 
