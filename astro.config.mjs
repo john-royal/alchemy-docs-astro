@@ -8,13 +8,17 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   site: "https://alchemy.run",
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: "passthrough",
+  }),
+  prefetch: !import.meta.env.DEV,
   integrations: [
     sitemap({
       filter: (page) => !page.endsWith(".html") && !page.endsWith(".md"),
     }),
     starlight({
       title: "Alchemy",
+      prerender: true,
       social: [
         {
           icon: "github",
@@ -34,6 +38,9 @@ export default defineConfig({
       ],
       editLink: {
         baseUrl: "https://github.com/sam-goodwin/alchemy/edit/main/alchemy-web",
+      },
+      components: {
+        Head: "./src/components/Head.astro",
       },
       sidebar: [
         {
@@ -57,7 +64,8 @@ export default defineConfig({
           autogenerate: { directory: "providers", collapsed: true },
         },
       ],
+      plugins: [starlightLlmsTxt()],
     }),
   ],
-  trailingSlash: "never",
+  trailingSlash: "ignore",
 });

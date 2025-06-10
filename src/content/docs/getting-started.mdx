@@ -3,25 +3,42 @@ title: Getting Started with Alchemy
 description: Quick start guide to using Alchemy, the TypeScript-native Infrastructure-as-Code library. Deploy your first Cloudflare Worker with type-safe infrastructure code.
 ---
 
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, Tabs, TabItem, Code } from "@astrojs/starlight/components";
 import CommandGroup from "../../components/command-group.astro";
 
 This guide will deploy a Cloudflare Worker and bind resources to it with Alchemy.
 
 <Aside type="tip">
-  Read [What is Alchemy](./what-is-alchemy) to get an overview of Alchemy and
-  how it's different than traditional IaC
+  Read [What is Alchemy](/what-is-alchemy) to get an overview of Alchemy and how
+  it's different than traditional IaC.
 </Aside>
 
 ## Prerequisites
 
 You'll need:
 
-<CommandGroup
-  node={["# Install from https://nodejs.org/", "node --version"]}
-  bun={["# Install from https://bun.sh/", "bun --version"]}
-  deno={["# Install from https://deno.com/", "deno --version"]}
-/>
+<Tabs>
+  <TabItem label="bun">
+    <Code
+      lang="sh"
+      code={["# Install from https://bun.sh", "bun --version"].join("\n")}
+    />
+  </TabItem>
+  <TabItem label="node">
+    <Code
+      lang="sh"
+      code={["# Install from https://nodejs.org", "node --version"].join("\n")}
+    />
+  </TabItem>
+  <TabItem label="deno">
+    <Code
+      lang="sh"
+      code={["# Install from https://deno.com/runtime", "deno --version"].join(
+        "\n"
+      )}
+    />
+  </TabItem>
+</Tabs>
 
 - A [Cloudflare account](https://dash.cloudflare.com/sign-up) (free tier works)
 
@@ -88,7 +105,7 @@ Create a file named `alchemy.run.ts` in your project directory:
 
 ### Step 1: Initialize the Alchemy Application Scope
 
-```typescript
+```typescript title="alchemy.run.ts"
 import alchemy from "alchemy";
 
 // Initialize the Alchemy application scope
@@ -104,7 +121,7 @@ const app = await alchemy("my-first-app", {
 
 ### Step 2: Create a Cloudflare Worker
 
-```typescript
+```typescript title="alchemy.run.ts"
 import { Worker } from "alchemy/cloudflare";
 
 // Create a simple worker
@@ -123,7 +140,7 @@ console.log(`Worker deployed at: ${worker.url}`);
 
 ### Step 3: Finalize the Application
 
-```typescript
+```typescript title="alchemy.run.ts"
 // Finalize the app to apply changes
 await app.finalize();
 ```
@@ -139,7 +156,7 @@ This is necessary for deleting what are called "orphaned resources" when resourc
 
 Create a `src/worker.ts` file with your worker code:
 
-```typescript
+```typescript title="src/worker.ts"
 export default {
   async fetch(request: Request): Promise<Response> {
     return Response.json({
@@ -182,7 +199,7 @@ Now let's add some infrastructure to our worker. We'll add a KV namespace for st
 
 First, update your `alchemy.run.ts` to add bindings:
 
-```typescript
+```typescript title="alchemy.run.ts"
 import { Worker, KVNamespace } from "alchemy/cloudflare";
 
 // ... existing app initialization ...
@@ -205,7 +222,7 @@ const worker = await Worker("hello-worker", {
 
 Now update your worker to use these bindings with type safety:
 
-```typescript
+```typescript title="src/worker.ts"
 // src/worker.ts
 import type { worker } from "../alchemy.run";
 
@@ -237,7 +254,7 @@ For a more integrated development experience, you can also access bindings throu
 
 First, create an `src/env.ts` file for global type configuration:
 
-```typescript
+```typescript title="src/env.ts"
 // src/env.ts
 import type { worker } from "../alchemy.run";
 
@@ -256,7 +273,7 @@ declare module "cloudflare:workers" {
 
 Update your `tsconfig.json` to include the env types:
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "types": ["@cloudflare/workers-types", "./src/env.ts"]
@@ -266,7 +283,7 @@ Update your `tsconfig.json` to include the env types:
 
 Now you can use the `env` import instead:
 
-```typescript
+```typescript title="src/worker.ts"
 // src/worker.ts
 import { env } from "cloudflare:workers";
 
@@ -314,7 +331,7 @@ State files help Alchemy determine whether to create, update, delete, or skip re
 
 Now add wrangler.json generation to your updated `alchemy.run.ts`:
 
-```typescript
+```typescript title="alchemy.run.ts"
 // Add this import
 import { WranglerJson } from "alchemy/cloudflare";
 
