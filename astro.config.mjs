@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightLlmsTxt from "starlight-llms-txt";
 import sitemap from "@astrojs/sitemap";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -63,5 +64,7 @@ export default defineConfig({
       plugins: [starlightLlmsTxt()],
     }),
   ],
+
   trailingSlash: "ignore",
+  adapter: vercel(),
 });
